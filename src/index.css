@@ -1,13 +1,13 @@
 :root {
   --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
-  --color-bg-main: #0a0a0a;
-  --color-bg-card: #171717;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a3a3a3;
+  --color-bg-main: #ffffff;
+  --color-bg-card: #f3f4f6;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
   --color-accent: #3b82f6;
   /* Electric Blue */
   --color-accent-hover: #2563eb;
-  --color-border: #333333;
+  --color-border: #e5e7eb;
 
   --spacing-container: 1200px;
 }
