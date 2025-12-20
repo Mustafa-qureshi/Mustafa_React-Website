@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { auth } from '../../firebase/config';
+import { signOut } from 'firebase/auth';
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { currentUser, userData, isAdmin } = useAuth();
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,6 +18,15 @@ export default function Navbar() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+            navigate('/');
+        } catch (error) {
+            console.error("Error signing out: ", error);
+        }
+    };
 
     const isActive = (path) => {
         return location.pathname === path ? 'text-purple-600 font-bold' : 'text-gray-700 hover:text-purple-600';
@@ -34,7 +47,7 @@ export default function Navbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex items-center gap-8">
-                    <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
+                    <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
                         <li>
                             <Link to="/" className={`block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 transition-colors ${isActive('/')}`}>Home</Link>
                         </li>
@@ -47,24 +60,37 @@ export default function Navbar() {
                         <li>
                             <Link to="/form" className={`block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 transition-colors ${isActive('/form')}`}>Form</Link>
                         </li>
+                        {isAdmin && (
+                            <li>
+                                <Link to="/admin" className={`block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 transition-colors ${isActive('/admin')}`}>Admin</Link>
+                            </li>
+                        )}
                     </ul>
 
                     <div className="flex items-center gap-4">
-                        {/* Auth Buttons */}
-                        <div className="flex items-center gap-2">
-                            <Link to="/signin" className="px-4 py-2 text-sm font-medium text-purple-600 hover:text-purple-800 transition-colors">Sign In</Link>
-                            <Link to="/signup" className="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors shadow-md hover:shadow-lg">Sign Up</Link>
-                        </div>
+                        {currentUser ? (
+                            <div className="flex items-center gap-4">
+                                <span className="text-sm font-medium text-gray-700">Hi, {userData?.fullname || 'User'}</span>
+                                <button
+                                    onClick={handleSignOut}
+                                    className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors shadow-md"
+                                >
+                                    Sign Out
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex items-center gap-2">
+                                <Link to="/signin" className="px-4 py-2 text-sm font-medium text-purple-600 hover:text-purple-800 transition-colors">Sign In</Link>
+                                <Link to="/signup" className="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors shadow-md hover:shadow-lg">Sign Up</Link>
+                            </div>
+                        )}
                     </div>
                 </div>
 
                 {/* Mobile Menu Button */}
                 <button
-                    data-collapse-toggle="navbar-sticky"
                     type="button"
                     className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                    aria-controls="navbar-sticky"
-                    aria-expanded={isMobileMenuOpen}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     <span className="sr-only">Open main menu</span>
@@ -76,24 +102,21 @@ export default function Navbar() {
                 {/* Mobile Menu Dropdown */}
                 <div className={`items-center justify-between w-full md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'}`} id="navbar-sticky">
                     <ul className="flex flex-col p-4 font-medium border border-gray-100 rounded-lg bg-gray-50 space-y-2">
-                        <li>
-                            <Link to="/" className="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded" aria-current="page" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/about" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
-                        </li>
-                        <li>
-                            <Link to="/contact" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
-                        </li>
-                        <li>
-                            <Link to="/form" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(false)}>Form</Link>
-                        </li>
-                        <li className="border-t border-gray-200 pt-2 mt-2">
-                            <Link to="/signin" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(false)}>Sign In</Link>
-                        </li>
-                        <li>
-                            <Link to="/signup" className="block py-2 pl-3 pr-4 text-purple-600 font-bold rounded hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(false)}>Sign Up</Link>
-                        </li>
+                        <li><Link to="/" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
+                        <li><Link to="/about" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>About</Link></li>
+                        <li><Link to="/contact" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link></li>
+                        <li><Link to="/form" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Form</Link></li>
+                        {currentUser ? (
+                            <>
+                                {isAdmin && <li><Link to="/admin" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Admin</Link></li>}
+                                <li className="border-t border-gray-200 pt-2"><button onClick={handleSignOut} className="block w-full text-left py-2 pl-3 pr-4 text-red-600 font-bold rounded">Sign Out</button></li>
+                            </>
+                        ) : (
+                            <>
+                                <li className="border-t border-gray-200 pt-2"><Link to="/signin" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Sign In</Link></li>
+                                <li><Link to="/signup" className="block py-2 pl-3 pr-4 text-purple-600 font-bold rounded" onClick={() => setIsMobileMenuOpen(false)}>Sign Up</Link></li>
+                            </>
+                        )}
                     </ul>
                 </div>
             </div>

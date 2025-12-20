@@ -4,79 +4,88 @@ export default function Hero() {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     return (
-        <section className="pt-24 pb-16 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
-            <div className="max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-                <div className="space-y-6 fade-in-up">
+        <section className="pt-32 pb-20 bg-gradient-to-br from-purple-50 via-white to-blue-50 overflow-hidden relative">
+            <div className="blob -top-24 -left-24"></div>
+            <div className="blob bottom-0 -right-24" style={{ animationDelay: '-5s' }}></div>
+
+            <div className="max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-16 items-center relative">
+                <div className="space-y-8 fade-in">
                     <span className="badge-gradient">New Drop 2025</span>
-                    <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+                    <h1 className="text-6xl md:text-7xl font-extrabold text-gray-900 leading-tight">
                         Stride X: <br />
                         <span className="gradient-text">Engineered for Speed</span>
                     </h1>
-                    <p className="text-xl text-gray-600 leading-relaxed">
+                    <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
                         Lightweight knit upper, responsive midsole, and sustainable materials — built for every stride you take.
                     </p>
 
-                    <div className="flex flex-wrap gap-4">
-                        <a href="#new-arrivals" className="btn-primary">Explore Collection</a>
+                    <div className="flex flex-wrap gap-5">
+                        <a href="#new-arrivals" className="btn-primary text-lg">Explore Collection</a>
                         <button
                             onClick={() => setIsVideoOpen(true)}
-                            className="btn-secondary"
+                            className="btn-secondary text-lg"
                         >
                             Watch Video
                         </button>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4 pt-6">
-                        <div className="card text-center">
-                            <div className="text-3xl font-bold gradient-text">4.9</div>
-                            <div className="text-sm text-gray-500 mt-1">Avg Rating</div>
+                    <div className="grid grid-cols-3 gap-6 pt-8">
+                        <div className="card text-center p-6 bg-white/50 backdrop-blur-sm border-white">
+                            <div className="text-4xl font-bold gradient-text">4.9</div>
+                            <div className="text-sm font-semibold text-gray-500 mt-2 uppercase tracking-wider">Rating</div>
                         </div>
-                        <div className="card text-center">
-                            <div className="text-3xl font-bold gradient-text">24k+</div>
-                            <div className="text-sm text-gray-500 mt-1">Pairs Sold</div>
+                        <div className="card text-center p-6 bg-white/50 backdrop-blur-sm border-white">
+                            <div className="text-4xl font-bold gradient-text">24k+</div>
+                            <div className="text-sm font-semibold text-gray-500 mt-2 uppercase tracking-wider">Sold</div>
                         </div>
-                        <div className="card text-center">
-                            <div className="text-3xl font-bold gradient-text">Free</div>
-                            <div className="text-sm text-gray-500 mt-1">Returns</div>
+                        <div className="card text-center p-6 bg-white/50 backdrop-blur-sm border-white">
+                            <div className="text-4xl font-bold gradient-text">Free</div>
+                            <div className="text-sm font-semibold text-gray-500 mt-2 uppercase tracking-wider">Returns</div>
                         </div>
                     </div>
                 </div>
 
-                <div className="relative float-animation">
-                    <div className="card max-w-md mx-auto product-card overflow-hidden">
-                        <div className="relative">
-                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop" alt="Stride X Carbon Edition" className="w-full h-80 object-cover rounded-lg" />
-                            <span className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                <div className="relative">
+                    <div className="card max-w-lg mx-auto product-card overflow-hidden !p-0 border-white shadow-soft-xl group">
+                        <div className="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop" alt="Stride X Carbon Edition" className="w-full h-[450px] object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <span className="absolute top-6 left-6 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
                                 BESTSELLER
                             </span>
-                            <button type="button" className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:scale-110 transition-transform">
-                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <button type="button" className="absolute top-6 right-6 bg-white/80 backdrop-blur-md rounded-full p-3 shadow-lg hover:scale-110 transition-all text-gray-900">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </button>
                         </div>
 
-                        <div className="p-6 space-y-4">
-                            <h3 className="text-2xl font-bold text-gray-900">Stride X — Carbon Edition</h3>
-                            <p className="text-gray-600">Responsive foam sole • Knit upper • Eco midsole</p>
-                            <div className="flex items-center justify-between">
-                                <span className="text-3xl font-bold gradient-text">$139</span>
-                                <div className="flex gap-2">
-                                    <button className="w-10 h-10 rounded-full bg-gray-900 hover:scale-110 transition-transform"></button>
-                                    <button className="w-10 h-10 rounded-full bg-blue-600 hover:scale-110 transition-transform"></button>
-                                    <button className="w-10 h-10 rounded-full bg-red-600 hover:scale-110 transition-transform"></button>
+                        <div className="p-8 space-y-6">
+                            <div className="flex justify-between items-start">
+                                <div>
+                                    <h3 className="text-3xl font-bold text-gray-900">Stride X</h3>
+                                    <p className="text-gray-500 font-medium">Carbon Edition • Performance</p>
                                 </div>
+                                <span className="text-3xl font-bold gradient-text">$139</span>
                             </div>
+
                             <div className="flex gap-3">
-                                <button className="btn-primary flex-1">Add to Cart</button>
-                                <button className="btn-secondary px-6">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="w-10 h-10 rounded-full bg-gray-900 border-4 border-white shadow-sm cursor-pointer hover:scale-110 transition-transform"></div>
+                                <div className="w-10 h-10 rounded-full bg-blue-600 border-4 border-white shadow-sm cursor-pointer hover:scale-110 transition-transform"></div>
+                                <div className="w-10 h-10 rounded-full bg-red-600 border-4 border-white shadow-sm cursor-pointer hover:scale-110 transition-transform"></div>
+                            </div>
+
+                            <div className="flex gap-4">
+                                <button className="btn-primary flex-1 py-4 text-lg">Add to Cart</button>
+                                <button className="btn-secondary px-6 group-hover:border-purple-200">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
                                 </button>
                             </div>
                         </div>
                     </div>
+                    {/* Floating accents */}
+                    <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-purple-100 rounded-full -z-10 blur-2xl"></div>
                 </div>
             </div>
 

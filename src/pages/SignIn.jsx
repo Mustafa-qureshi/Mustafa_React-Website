@@ -1,133 +1,187 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import { auth, db, googleProvider } from '../firebase/config';
+import { signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 export default function SignIn() {
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setError('');
+        setMessage('');
+        setLoading(true);
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate(from, { replace: true });
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleGoogleSignIn = async () => {
+        setError('');
+        setMessage('');
+        setLoading(true);
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (!userDoc.exists()) {
+                await setDoc(doc(db, "users", user.uid), {
+                    fullname: user.displayName,
+                    email: user.email,
+                    role: "user",
+                    createdAt: new Date()
+                });
+            }
+            navigate(from, { replace: true });
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleForgotPassword = async () => {
+        if (!email) {
+            setError('Please enter your email first.');
+            return;
+        }
+        setLoading(true);
+        try {
+            await sendPasswordResetEmail(auth, email);
+            setMessage('Password reset email sent! Check your inbox.');
+            setError('');
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div className="min-h-screen flex flex-col bg-gray-50/50">
             <Navbar />
-            <div className="flex-1 grid md:grid-cols-2 pt-16">
-                {/* Left Side - Visual & Animation */}_
-                <div className="hidden md:flex flex-col justify-center items-center bg-gradient-to-br from-gray-900 to-purple-900 text-white p-12 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556906781-9a412961d289?w=1000&q=80')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
-                    <div className="relative z-10 text-center">
-                        <div className="mb-8 p-4 bg-white/10 backdrop-blur-md rounded-2xl inline-block animate-bounce shadow-xl">
-                            <span className="text-6xl">👟</span>
+            <div className="flex-1 flex items-center justify-center p-6 sm:p-12 relative overflow-hidden pt-32 pb-20">
+                <div className="blob -top-24 -left-24 opacity-20"></div>
+                <div className="blob bottom-0 -right-24 opacity-20"></div>
+
+                <div className="w-full max-w-5xl grid md:grid-cols-2 bg-white rounded-[3rem] shadow-soft-xl border border-white overflow-hidden relative group">
+                    <div className="hidden md:flex flex-col justify-center p-16 bg-gradient-to-br from-[#7c3aed] to-[#db2777] text-white relative">
+                        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                            <div className="absolute top-10 left-10 w-32 h-32 rounded-full border-4 border-white"></div>
+                            <div className="absolute bottom-20 right-10 w-24 h-24 rounded-full bg-white"></div>
                         </div>
-                        <h2 className="text-4xl font-extrabold mb-4 tracking-tight">Welcome Back!</h2>
-                        <p className="text-purple-200 text-lg max-w-md mx-auto">
-                            Ready to step up your game? Sign in to access your exclusive offers and saved styles.
-                        </p>
+                        <div className="relative z-10">
+                            <h2 className="text-5xl font-black mb-8 leading-tight">Welcome <br />Back!</h2>
+                            <p className="text-xl text-purple-100 font-medium leading-relaxed mb-10">
+                                Ready to step up your game? Sign in to access your exclusive offers and saved styles.
+                            </p>
+                            <div className="flex items-center gap-4">
+                                <div className="flex -space-x-3">
+                                    {[1, 2, 3].map(i => (
+                                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-gray-200"></div>
+                                    ))}
+                                </div>
+                                <p className="text-sm font-bold text-white/80">Join 10k+ members</p>
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Decorative Circles */}
-                    <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-                    <div className="absolute -top-20 -right-20 w-80 h-80 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-                </div>
+                    <div className="flex items-center justify-center p-10 md:p-16">
+                        <div className="w-full max-w-sm">
+                            <div className="mb-10">
+                                <h1 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Login</h1>
+                                <p className="text-gray-500 font-medium">Please enter your credentials.</p>
+                            </div>
 
-                <div className="flex items-center justify-center p-8 bg-white dark:bg-gray-800 overflow-y-auto transition-colors duration-300">
-                    <div className="w-full max-w-md p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
-                        <div className="mb-8">
-                            <Link to="/" className="inline-flex items-center text-sm text-gray-500 hover:text-purple-600 transition-colors mb-8 dark:text-gray-400 dark:hover:text-purple-400">
-                                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                                </svg>
-                                Back to Home
-                            </Link>
-                            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Welcome back!</h1>
-                            <p className="text-gray-600 dark:text-gray-400">Please enter your details.</p>
-                        </div>
+                            {error && <div className="mb-6 p-4 bg-red-50 text-red-600 rounded-2xl text-sm font-bold border border-red-100">{error}</div>}
+                            {message && <div className="mb-6 p-4 bg-green-50 text-green-600 rounded-2xl text-sm font-bold border border-green-100">{message}</div>}
 
-                        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                                <div className="relative">
+                            <form className="space-y-6" onSubmit={handleLogin}>
+                                <div className="space-y-2">
+                                    <label htmlFor="email" className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Email</label>
                                     <input
                                         type="email"
                                         id="email"
-                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:border-purple-500 focus:ring-4 focus:ring-purple-100 dark:focus:ring-purple-900 transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                        className="w-full !rounded-2xl"
                                         placeholder="name@company.com"
                                         required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </div>
-                            </div>
 
-                            <div>
-                                <div className="flex items-center justify-between mb-2">
-                                    <label htmlFor="password" className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Password</label>
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-center ml-1">
+                                        <label htmlFor="password" className="text-xs font-black text-gray-400 uppercase tracking-widest">Password</label>
+                                        <button type="button" onClick={handleForgotPassword} className="text-xs font-black text-purple-600 hover:text-purple-800 uppercase tracking-widest">Forgot?</button>
+                                    </div>
+                                    <div className="relative">
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            id="password"
+                                            className="w-full !rounded-2xl pr-14"
+                                            placeholder="••••••••"
+                                            required
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                        <button
+                                            type="button"
+                                            className="absolute inset-y-0 right-0 pr-4 flex items-center text-xs font-black text-purple-600 uppercase tracking-widest"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        >
+                                            {showPassword ? "Hide" : "Show"}
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="relative">
-                                    <input
-                                        type={showPassword ? "text" : "password"}
-                                        id="password"
-                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:border-purple-500 focus:ring-4 focus:ring-purple-100 dark:focus:ring-purple-900 transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                                        required
-                                    />
-                                    <button
-                                        type="button"
-                                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                    >
-                                        {showPassword ? (
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                                            </svg>
-                                        ) : (
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                            </svg>
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
 
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center">
-                                    <input
-                                        id="remember-me"
-                                        name="remember-me"
-                                        type="checkbox"
-                                        className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                                    />
-                                    <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">Remember for 30 days</label>
-                                </div>
-                                <a href="#" className="font-medium text-purple-600 hover:text-purple-500 text-sm">Forgot password?</a>
-                            </div>
-
-                            <div className="space-y-4">
-                                <button type="submit" className="w-full btn-primary py-3 flex items-center justify-center gap-2 group">
-                                    Log In
+                                <button type="submit" disabled={loading} className="w-full btn-primary py-4 disabled:opacity-50 text-lg font-black uppercase tracking-wider">
+                                    {loading ? 'Logging in...' : 'Log In'}
                                 </button>
 
-                                <button type="button" className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                                    <svg className="w-5 h-5 mr-3" viewBox="0 0 48 48">
+                                <div className="relative flex items-center py-4">
+                                    <div className="flex-grow border-t border-gray-100"></div>
+                                    <span className="flex-shrink mx-4 text-xs font-black text-gray-300 uppercase tracking-widest">OR</span>
+                                    <div className="flex-grow border-t border-gray-100"></div>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    onClick={handleGoogleSignIn}
+                                    disabled={loading}
+                                    className="w-full flex items-center justify-center gap-3 px-6 py-4 border-2 border-gray-100 rounded-2xl bg-white text-sm font-black text-gray-700 hover:bg-gray-50 transition-all disabled:opacity-50"
+                                >
+                                    <svg className="w-5 h-5" viewBox="0 0 48 48">
                                         <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
                                         <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z" />
                                         <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.219 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" />
                                         <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C39.712 34.464 42 30.028 42 24c0-1.341-.138-2.65-.389-3.917z" />
                                     </svg>
-                                    Log in with Google
+                                    Google Login
                                 </button>
-                                {/* I'm removing Apple button from SignIn to match Source closely, since Source only had Google. 
-                                    Wait, my previous thought was "better to be consistent".
-                                    But "pixel perfect to source" usually implies I should mimic the source.
-                                    Source SignIn has ONLY Google.
-                                    Source SignUp has both.
-                                    This is weird inconsistency in source, but I will mimic it if I want pixel perfection.
-                                    I'll stick to just Google here to match source_signin.html EXACTLY.
-                                */}
-                            </div>
-                        </form>
+                            </form>
 
-                        <div className="mt-8 text-center text-sm text-gray-600">
-                            Don't have an account? {' '}
-                            <Link to="/signup" className="font-medium text-purple-600 hover:text-purple-500 hover:underline">
-                                Sign Up
-                            </Link>
+                            <div className="mt-10 text-center text-sm font-medium text-gray-500">
+                                New here? {' '}
+                                <Link to="/signup" className="text-purple-600 font-black hover:text-purple-800 transition-colors uppercase tracking-widest text-xs">Create Account</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

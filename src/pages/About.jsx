@@ -33,37 +33,42 @@ export default function About() {
             <Navbar />
             <main>
                 {/* Hero Section */}
-                <section className="pt-32 pb-16 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
-                    <div className="max-w-screen-xl mx-auto px-4 text-center">
-                        <span className="badge-gradient mb-4 inline-block">Our Story</span>
-                        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
+                <section className="pt-48 pb-24 bg-gradient-to-br from-purple-50 via-white to-pink-50 relative overflow-hidden">
+                    <div className="blob -top-24 -left-24 opacity-30"></div>
+                    <div className="blob bottom-0 -right-24 opacity-20" style={{ animationDelay: '-8s' }}></div>
+
+                    <div className="max-w-screen-xl mx-auto px-4 text-center relative">
+                        <span className="badge-gradient mb-8">Our Story</span>
+                        <h1 className="text-7xl md:text-9xl font-black text-gray-900 mb-10 leading-none tracking-tighter">
                             About <span className="gradient-text">StrideGear</span>
                         </h1>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
                             We design premium sneakers that perform on the track, in the city, and in everyday life. Sustainable materials, innovative cushioning, and bold aesthetics define every pair.
                         </p>
                     </div>
                 </section>
 
                 {/* Mission & Vision */}
-                <section className="section-padding bg-white">
-                    <div className="max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-8">
-                        <div className="card hover:scale-105 transition-transform">
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white text-3xl mb-4">
+                <section className="section-padding bg-white relative">
+                    <div className="max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-12 relative">
+                        <div className="card !p-16 relative overflow-hidden group border-white shadow-soft-xl">
+                            <div className="absolute -top-10 -right-10 opacity-[0.03] text-[15rem] group-hover:scale-110 transition-transform font-black">🎯</div>
+                            <div className="w-24 h-24 rounded-[2.5rem] bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white text-5xl mb-10 shadow-2xl shadow-blue-200/50">
                                 🎯
                             </div>
-                            <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                            <p className="text-gray-600 leading-relaxed">
+                            <h3 className="text-4xl font-black mb-6 text-gray-900">Our Mission</h3>
+                            <p className="text-xl text-gray-600 leading-relaxed font-medium">
                                 To empower movement with sneakers that combine comfort, durability, and iconic design. We believe every step should feel effortless and every stride should inspire confidence.
                             </p>
                         </div>
 
-                        <div className="card hover:scale-105 transition-transform">
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-3xl mb-4">
+                        <div className="card !p-16 relative overflow-hidden group border-white shadow-soft-xl">
+                            <div className="absolute -top-10 -right-10 opacity-[0.03] text-[15rem] group-hover:scale-110 transition-transform font-black">🚀</div>
+                            <div className="w-24 h-24 rounded-[2.5rem] bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-white text-5xl mb-10 shadow-2xl shadow-purple-200/50">
                                 🚀
                             </div>
-                            <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-                            <p className="text-gray-600 leading-relaxed">
+                            <h3 className="text-4xl font-black mb-6 text-gray-900">Our Vision</h3>
+                            <p className="text-xl text-gray-600 leading-relaxed font-medium">
                                 To be the most loved brand for those who value performance and style. We're building a future where sustainability meets innovation, creating footwear that's better for you and the planet.
                             </p>
                         </div>
@@ -71,33 +76,25 @@ export default function About() {
                 </section>
 
                 {/* Timeline Stats */}
-                <section className="section-padding bg-gradient-to-br from-purple-50 to-pink-50">
+                <section className="section-padding bg-gray-50/30">
                     <div className="max-w-screen-xl mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center mb-12">Our Journey</h2>
-                        <div className="grid md:grid-cols-4 gap-6">
-                            <div className="card text-center hover:scale-105 transition-transform">
-                                <div className="text-4xl font-bold gradient-text mb-2">2018</div>
-                                <div className="text-gray-600 font-medium">Founded</div>
-                                <p className="text-sm text-gray-500 mt-2">Started in a small workshop with a big dream</p>
-                            </div>
-
-                            <div className="card text-center hover:scale-105 transition-transform">
-                                <div className="text-4xl font-bold gradient-text mb-2">150+</div>
-                                <div className="text-gray-600 font-medium">Designs</div>
-                                <p className="text-sm text-gray-500 mt-2">Unique styles crafted with passion</p>
-                            </div>
-
-                            <div className="card text-center hover:scale-105 transition-transform">
-                                <div className="text-4xl font-bold gradient-text mb-2">50k+</div>
-                                <div className="text-gray-600 font-medium">Happy Customers</div>
-                                <p className="text-sm text-gray-500 mt-2">Across 50+ countries worldwide</p>
-                            </div>
-
-                            <div className="card text-center hover:scale-105 transition-transform">
-                                <div className="text-4xl font-bold gradient-text mb-2">4.9</div>
-                                <div className="text-gray-600 font-medium">Average Rating</div>
-                                <p className="text-sm text-gray-500 mt-2">From verified customer reviews</p>
-                            </div>
+                        <div className="text-center mb-24">
+                            <span className="badge-gradient mb-4">Milestones</span>
+                            <h2 className="text-6xl font-black text-gray-900">Our Journey</h2>
+                        </div>
+                        <div className="grid md:grid-cols-4 gap-10">
+                            {[
+                                { year: "2018", label: "Founded", desc: "Started in a small workshop with a big dream" },
+                                { year: "150+", label: "Designs", desc: "Unique styles crafted with passion" },
+                                { year: "50k+", label: "Customers", desc: "Across 50+ countries worldwide" },
+                                { year: "4.9", label: "Rating", desc: "From verified customer reviews" }
+                            ].map((stat, idx) => (
+                                <div key={idx} className="card text-center !p-12 bg-white border-white hover:scale-105">
+                                    <div className="text-6xl font-black gradient-text mb-6 leading-none">{stat.year}</div>
+                                    <div className="text-2xl font-black text-gray-900 mb-4">{stat.label}</div>
+                                    <p className="text-gray-500 leading-relaxed font-medium text-lg">{stat.desc}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
@@ -105,49 +102,33 @@ export default function About() {
                 {/* Team Section */}
                 <section className="section-padding bg-white">
                     <div className="max-w-screen-xl mx-auto px-4">
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
-                            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                        <div className="text-center mb-24">
+                            <span className="badge-gradient mb-6">The Creators</span>
+                            <h2 className="text-6xl font-black text-gray-900 mb-8 leading-tight">Meet Our Team</h2>
+                            <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium">
                                 The passionate people behind every stride
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-8">
-                            <div className="card text-center group">
-                                <div className="relative mb-4 inline-block">
-                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop" alt="Aisha" className="mx-auto rounded-full h-32 w-32 object-cover border-4 border-purple-200 group-hover:border-purple-400 transition-colors" />
-                                    <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white font-bold">
-                                        ✨
+                        <div className="grid md:grid-cols-3 gap-16">
+                            {[
+                                { name: "Aisha Rahman", role: "Lead Designer", emoji: "✨", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop", color: "purple" },
+                                { name: "Daniel Chen", role: "Head of Tech", emoji: "⚡", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop", color: "blue" },
+                                { name: "Mina Park", role: "Sustainability", emoji: "🌱", img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=400&h=400&fit=crop", color: "green" }
+                            ].map((member, idx) => (
+                                <div key={idx} className="card text-center group !p-12 border-white relative">
+                                    <div className="relative mb-10 inline-block">
+                                        <div className={`absolute -inset-4 bg-${member.color}-400 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-700`}></div>
+                                        <img src={member.img} alt={member.name} className="relative mx-auto rounded-[3rem] h-60 w-60 object-cover border-[12px] border-gray-50 shadow-2xl transition-all duration-700 group-hover:scale-[1.05] group-hover:rotate-2" />
+                                        <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-white rounded-3xl shadow-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:-rotate-12 transition-all duration-500 border border-gray-100">
+                                            {member.emoji}
+                                        </div>
                                     </div>
+                                    <h4 className="text-3xl font-black mb-3 text-gray-900">{member.name}</h4>
+                                    <p className="text-purple-600 font-black mb-6 uppercase tracking-[0.2em] text-sm">{member.role}</p>
+                                    <p className="text-gray-500 leading-relaxed font-medium text-lg">Pioneering core technologies and designs that redefine footwear.</p>
                                 </div>
-                                <h4 className="text-xl font-bold mb-1">Aisha Rahman</h4>
-                                <p className="text-purple-600 font-semibold mb-3">Lead Designer</p>
-                                <p className="text-gray-600 text-sm">10+ years creating iconic sneaker designs that blend style with function.</p>
-                            </div>
-
-                            <div className="card text-center group">
-                                <div className="relative mb-4 inline-block">
-                                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop" alt="Daniel" className="mx-auto rounded-full h-32 w-32 object-cover border-4 border-blue-200 group-hover:border-blue-400 transition-colors" />
-                                    <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold">
-                                        ⚡
-                                    </div>
-                                </div>
-                                <h4 className="text-xl font-bold mb-1">Daniel Chen</h4>
-                                <p className="text-blue-600 font-semibold mb-3">Head of Performance</p>
-                                <p className="text-gray-600 text-sm">Former athlete bringing cutting-edge technology to every shoe.</p>
-                            </div>
-
-                            <div className="card text-center group">
-                                <div className="relative mb-4 inline-block">
-                                    <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=300&h=300&fit=crop" alt="Mina" className="mx-auto rounded-full h-32 w-32 object-cover border-4 border-green-200 group-hover:border-green-400 transition-colors" />
-                                    <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold">
-                                        🌱
-                                    </div>
-                                </div>
-                                <h4 className="text-xl font-bold mb-1">Mina Park</h4>
-                                <p className="text-green-600 font-semibold mb-3">Sustainability Lead</p>
-                                <p className="text-gray-600 text-sm">Pioneering eco-friendly materials and ethical manufacturing practices.</p>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </section>
