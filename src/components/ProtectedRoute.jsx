@@ -1,17 +1,17 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import AuthRequired from './AuthRequired';
 import { useAuth } from '../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
     const { currentUser, loading } = useAuth();
-    const location = useLocation();
 
     if (loading) return <div>Loading...</div>;
 
     if (!currentUser) {
-        return <Navigate to="/signin" state={{ from: location }} replace />;
+        return <AuthRequired />;
     }
 
     return children;
 };
 
 export default ProtectedRoute;
+

@@ -16,7 +16,7 @@ import {
 } from 'firebase/firestore';
 
 export default function FormPage() {
-    const { currentUser, isAdmin } = useAuth();
+    const { currentUser, userData, isAdmin } = useAuth();
     const [formData, setFormData] = useState({
         shoeName: '',
         brand: '',
@@ -110,6 +110,7 @@ export default function FormPage() {
                 await addDoc(collection(db, 'shoes'), {
                     ...formData,
                     userId: currentUser.uid,
+                    addedBy: userData?.fullname || 'User',
                     createdAt: new Date(),
                     updatedAt: new Date()
                 });
@@ -381,8 +382,11 @@ export default function FormPage() {
                                                 {record.createdAt?.toDate ? record.createdAt.toDate().toLocaleDateString() : 'Live'}
                                             </div>
                                             {isAdmin && (
-                                                <div className="bg-gray-100 px-3 py-1 rounded-full text-gray-400 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                                                    ADMIN
+                                                <div className="flex items-center gap-2 bg-purple-50 px-3 py-1.5 rounded-full border border-purple-100 group-hover:bg-purple-600 group-hover:border-purple-600 transition-all">
+                                                    <span className="w-2 h-2 rounded-full bg-purple-600 group-hover:bg-white animate-pulse"></span>
+                                                    <span className="text-[9px] font-black text-purple-600 group-hover:text-white uppercase tracking-tighter">
+                                                        Added By: {record.addedBy || 'User'}
+                                                    </span>
                                                 </div>
                                             )}
                                         </div>

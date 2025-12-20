@@ -1,16 +1,68 @@
-# React + Vite
+# StrideGear — Premium Sneaker Management
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+StrideGear is a mockup/sample high-performance React web application designed for sneaker enthusiasts to manage their collections with a premium, modern aesthetic. It integrates secure authentication, real-time inventory tracking, and role-based access control.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Functionalities
 
-## React Compiler
+- **Secure Authentication**: Multi-layered login system supporting standard Email/Password and one-tap Google OAuth.
+- **Dynamic Inventory CRUD**: Full Create, Read, Update, and Delete capabilities for sneaker records (Brand, Model, Category, Price, Size).
+- **Role-Based Dashboards**: Distinct interfaces and permissions for regular **Users** (personal collections) and **Admins** (global catalog management).
+- **Soft UI Design System**: A bespoke visual language featuring super-rounded corners, layered soft shadows, and premium gradients.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Technical Architecture & Core Logic
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Smart Redirect Algorithm
+To ensure a frictionless user experience, the application implements a context-aware navigation system.
+- **Mechanism**: Captures the intended protected destination using React Router's `location` state during unauthorized access attempts.
+- **Outcome**: Automatically restores the user's workflow by redirecting them to their original target immediately after successful authentication, preventing session "jump-scares" back to the homepage.
+
+### 2. Role-Based Access Control (RBAC)
+A robust security layer implemented via custom React components (`ProtectedRoute`, `AdminRoute`).
+- **Logic**: Intercepts routing requests and validates the user's authentication state and custom claims (Firestore-stored roles) before rendering sensitive components.
+- **Algorithm**: Uses a hierarchical check: `User Session` > `Loading State` > `Role Claim`.
+
+### 3. Real-time Synchronization & Fallback
+Leverages Firebase Firestore for low-latency data updates.
+- **Implementation**: Utilizes `onSnapshot` for real-time UI reflect.
+- **Resilience Algorithm**: Includes a fallback query logic that detects missing composite indexes and automatically switches to client-side sorting to maintain functionality during database optimization.
+
+### 4. Global Design Tokens
+The "Soft" aesthetic is maintained through a centralized CSS variable system (`index.css`), allowing for rapid global changes to corner radii and shadow depths.
+
+---
+
+## 🚀 Quick Start
+
+1. **Clone & Install**:
+   ```bash
+   git clone [repository-url]
+   npm install
+   ```
+
+2. **Environment Setup**:
+   Configure `src/firebase/config.js` with your Firebase project credentials.
+
+3. **Development**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Production Build**:
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 🌐 Deployment
+
+The project is optimized for **Firebase Hosting**. 
+- Deploy using: `firebase deploy --only hosting`
+- Ensure authorized domains are configured in the Firebase Console for proper OAuth functionality.
+
+---
+© 2025 StrideGear. Step Boldly.
