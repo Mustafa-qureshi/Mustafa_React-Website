@@ -1,39 +1,32 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // User profile rules
+    // Users can read and write their own user document
     match /users/{userId} {
-      allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.uid == userId;
-    }
-    
-    // Shoe data rules
-    match /shoes/{shoeId} {
-      allow read: if request.auth != null && (
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' || 
-        resource.data.userId == request.auth.uid
-      );
-      
-      allow create: if request.auth != null;
-      
-      allow update, delete: if request.auth != null && (
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' || 
-        resource.data.userId == request.auth.uid
-      );
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      // Allow admins to read all user documents
+      allow read: if request.auth != null && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
     }
 
-    // Keep inquiries rules for compatibility
-    match /inquiries/{inquiryId} {
-      allow read: if request.auth != null && (
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' || 
-        resource.data.userId == request.auth.uid
-      );
-      allow create: if request.auth != null;
-      allow update, delete: if request.auth != null && (
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' || 
-        resource.data.userId == request.auth.uid
-      );
+    // Projects - users can read/write their own, admins can read/write all
+    match /projects/{projectId} {
+      // Read access
+      allow read: if request.auth != null &&
+        (request.auth.uid == resource.data.userId ||
+         (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'));
+      // Create access
+      allow create: if request.auth != null &&
+        (request.auth.uid == request.resource.data.userId ||
+         (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'));
+      // Update and delete access
+      allow update, delete: if request.auth != null &&
+        (request.auth.uid == resource.data.userId ||
+         (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'));
     }
   }
 }

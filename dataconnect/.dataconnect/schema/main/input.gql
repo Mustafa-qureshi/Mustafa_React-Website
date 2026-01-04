@@ -1,0 +1,1453 @@
+"""
+✨ `CompanyInfo_KeyOutput` returns the primary key fields of table type `CompanyInfo`.
+
+It has the same format as `CompanyInfo_Key`, but is only used as mutation return value.
+"""
+scalar CompanyInfo_KeyOutput
+"""
+✨ `Project_KeyOutput` returns the primary key fields of table type `Project`.
+
+It has the same format as `Project_Key`, but is only used as mutation return value.
+"""
+scalar Project_KeyOutput
+"""
+✨ `Service_KeyOutput` returns the primary key fields of table type `Service`.
+
+It has the same format as `Service_Key`, but is only used as mutation return value.
+"""
+scalar Service_KeyOutput
+"""
+✨ `TeamMember_KeyOutput` returns the primary key fields of table type `TeamMember`.
+
+It has the same format as `TeamMember_Key`, but is only used as mutation return value.
+"""
+scalar TeamMember_KeyOutput
+"""
+✨ `Testimonial_KeyOutput` returns the primary key fields of table type `Testimonial`.
+
+It has the same format as `Testimonial_Key`, but is only used as mutation return value.
+"""
+scalar Testimonial_KeyOutput
+"""
+✨ Generated data input type for table 'CompanyInfo'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input CompanyInfo_Data {
+  """
+  ✨ Generated from Field `CompanyInfo`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `CompanyInfo`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `CompanyInfo`.`address` of type `String`
+  """
+  address: String
+  """
+  ✨ `_expr` server value variant of `address` (✨ Generated from Field `CompanyInfo`.`address` of type `String`)
+  """
+  address_expr: String_Expr
+  """
+  ✨ Generated from Field `CompanyInfo`.`contactEmail` of type `String!`
+  """
+  contactEmail: String
+  """
+  ✨ `_expr` server value variant of `contactEmail` (✨ Generated from Field `CompanyInfo`.`contactEmail` of type `String!`)
+  """
+  contactEmail_expr: String_Expr
+  """
+  ✨ Generated from Field `CompanyInfo`.`description` of type `String!`
+  """
+  description: String
+  """
+  ✨ `_expr` server value variant of `description` (✨ Generated from Field `CompanyInfo`.`description` of type `String!`)
+  """
+  description_expr: String_Expr
+  """
+  ✨ Generated from Field `CompanyInfo`.`missionStatement` of type `String`
+  """
+  missionStatement: String
+  """
+  ✨ `_expr` server value variant of `missionStatement` (✨ Generated from Field `CompanyInfo`.`missionStatement` of type `String`)
+  """
+  missionStatement_expr: String_Expr
+  """
+  ✨ Generated from Field `CompanyInfo`.`motto` of type `String!`
+  """
+  motto: String
+  """
+  ✨ `_expr` server value variant of `motto` (✨ Generated from Field `CompanyInfo`.`motto` of type `String!`)
+  """
+  motto_expr: String_Expr
+  """
+  ✨ Generated from Field `CompanyInfo`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `CompanyInfo`.`name` of type `String!`)
+  """
+  name_expr: String_Expr
+  """
+  ✨ Generated from Field `CompanyInfo`.`phoneNumber` of type `String`
+  """
+  phoneNumber: String
+  """
+  ✨ `_expr` server value variant of `phoneNumber` (✨ Generated from Field `CompanyInfo`.`phoneNumber` of type `String`)
+  """
+  phoneNumber_expr: String_Expr
+  """
+  ✨ Generated from Field `CompanyInfo`.`websiteUrl` of type `String`
+  """
+  websiteUrl: String
+  """
+  ✨ `_expr` server value variant of `websiteUrl` (✨ Generated from Field `CompanyInfo`.`websiteUrl` of type `String`)
+  """
+  websiteUrl_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'CompanyInfo'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input CompanyInfo_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [CompanyInfo_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: CompanyInfo_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [CompanyInfo_Filter!]
+  """
+  ✨ Generated from Field `CompanyInfo`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`address` of type `String`
+  """
+  address: String_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`contactEmail` of type `String!`
+  """
+  contactEmail: String_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`description` of type `String!`
+  """
+  description: String_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`missionStatement` of type `String`
+  """
+  missionStatement: String_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`motto` of type `String!`
+  """
+  motto: String_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`phoneNumber` of type `String`
+  """
+  phoneNumber: String_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`websiteUrl` of type `String`
+  """
+  websiteUrl: String_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`projects_on_companyInfo` of type `[Project!]!`
+  """
+  projects_on_companyInfo: Project_ListFilter
+  """
+  ✨ Generated from Field `CompanyInfo`.`teamMembers_on_companyInfo` of type `[TeamMember!]!`
+  """
+  teamMembers_on_companyInfo: TeamMember_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'CompanyInfo'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input CompanyInfo_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [CompanyInfo_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: CompanyInfo_Filter
+}
+"""
+✨ Generated having input type for table 'CompanyInfo'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input CompanyInfo_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [CompanyInfo_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: CompanyInfo_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [CompanyInfo_Having!]
+  """
+  ✨ Generated from Field `CompanyInfo`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`address_count` of type `Int!`
+  """
+  address_count: Int_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`contactEmail_count` of type `Int!`
+  """
+  contactEmail_count: Int_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`description_count` of type `Int!`
+  """
+  description_count: Int_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`missionStatement_count` of type `Int!`
+  """
+  missionStatement_count: Int_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`motto_count` of type `Int!`
+  """
+  motto_count: Int_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`phoneNumber_count` of type `Int!`
+  """
+  phoneNumber_count: Int_Filter
+  """
+  ✨ Generated from Field `CompanyInfo`.`websiteUrl_count` of type `Int!`
+  """
+  websiteUrl_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'CompanyInfo'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input CompanyInfo_Key {
+  """
+  ✨ Generated from Field `CompanyInfo`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `CompanyInfo`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'CompanyInfo'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input CompanyInfo_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: CompanyInfo_Filter
+}
+"""
+✨ Generated order input type for table 'CompanyInfo'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input CompanyInfo_Order {
+  """
+  ✨ Generated from Field `CompanyInfo`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`address` of type `String`
+  """
+  address: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`contactEmail` of type `String!`
+  """
+  contactEmail: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`description` of type `String!`
+  """
+  description: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`missionStatement` of type `String`
+  """
+  missionStatement: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`motto` of type `String!`
+  """
+  motto: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`phoneNumber` of type `String`
+  """
+  phoneNumber: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`websiteUrl` of type `String`
+  """
+  websiteUrl: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`address_count` of type `Int!`
+  """
+  address_count: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`contactEmail_count` of type `Int!`
+  """
+  contactEmail_count: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`description_count` of type `Int!`
+  """
+  description_count: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`missionStatement_count` of type `Int!`
+  """
+  missionStatement_count: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`motto_count` of type `Int!`
+  """
+  motto_count: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`phoneNumber_count` of type `Int!`
+  """
+  phoneNumber_count: OrderDirection
+  """
+  ✨ Generated from Field `CompanyInfo`.`websiteUrl_count` of type `Int!`
+  """
+  websiteUrl_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Project'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Project_Data {
+  """
+  ✨ Generated from Field `Project`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Project`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Project`.`companyInfoId` of type `UUID`
+  """
+  companyInfoId: UUID
+  """
+  ✨ `_expr` server value variant of `companyInfoId` (✨ Generated from Field `Project`.`companyInfoId` of type `UUID`)
+  """
+  companyInfoId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Project`.`companyInfo` of type `CompanyInfo`
+  """
+  companyInfo: CompanyInfo_Key
+  """
+  ✨ Generated from Field `Project`.`clientName` of type `String`
+  """
+  clientName: String
+  """
+  ✨ `_expr` server value variant of `clientName` (✨ Generated from Field `Project`.`clientName` of type `String`)
+  """
+  clientName_expr: String_Expr
+  """
+  ✨ Generated from Field `Project`.`completionDate` of type `Date!`
+  """
+  completionDate: Date
+  """
+  ✨ `_date` server value variant of `completionDate` (✨ Generated from Field `Project`.`completionDate` of type `Date!`)
+  """
+  completionDate_date: Date_Relative
+  """
+  ✨ `_expr` server value variant of `completionDate` (✨ Generated from Field `Project`.`completionDate` of type `Date!`)
+  """
+  completionDate_expr: Date_Expr
+  """
+  ✨ `_update` server value variant of `completionDate` (✨ Generated from Field `Project`.`completionDate` of type `Date!`)
+  """
+  completionDate_update: [Date_Update!]
+  """
+  ✨ Generated from Field `Project`.`description` of type `String!`
+  """
+  description: String
+  """
+  ✨ `_expr` server value variant of `description` (✨ Generated from Field `Project`.`description` of type `String!`)
+  """
+  description_expr: String_Expr
+  """
+  ✨ Generated from Field `Project`.`projectUrl` of type `String`
+  """
+  projectUrl: String
+  """
+  ✨ `_expr` server value variant of `projectUrl` (✨ Generated from Field `Project`.`projectUrl` of type `String`)
+  """
+  projectUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `Project`.`technologiesUsed` of type `[String]`
+  """
+  technologiesUsed: [String!]
+  """
+  ✨ `_update` server value variant of `technologiesUsed` (✨ Generated from Field `Project`.`technologiesUsed` of type `[String]`)
+  """
+  technologiesUsed_update: [String_ListUpdate!]
+  """
+  ✨ Generated from Field `Project`.`thumbnailUrl` of type `String`
+  """
+  thumbnailUrl: String
+  """
+  ✨ `_expr` server value variant of `thumbnailUrl` (✨ Generated from Field `Project`.`thumbnailUrl` of type `String`)
+  """
+  thumbnailUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `Project`.`title` of type `String!`
+  """
+  title: String
+  """
+  ✨ `_expr` server value variant of `title` (✨ Generated from Field `Project`.`title` of type `String!`)
+  """
+  title_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Project'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Project_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Project_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Project_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Project_Filter!]
+  """
+  ✨ Generated from Field `Project`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Project`.`companyInfoId` of type `UUID`
+  """
+  companyInfoId: UUID_Filter
+  """
+  ✨ Generated from Field `Project`.`companyInfo` of type `CompanyInfo`
+  """
+  companyInfo: CompanyInfo_Filter
+  """
+  ✨ Generated from Field `Project`.`clientName` of type `String`
+  """
+  clientName: String_Filter
+  """
+  ✨ Generated from Field `Project`.`completionDate` of type `Date!`
+  """
+  completionDate: Date_Filter
+  """
+  ✨ Generated from Field `Project`.`description` of type `String!`
+  """
+  description: String_Filter
+  """
+  ✨ Generated from Field `Project`.`projectUrl` of type `String`
+  """
+  projectUrl: String_Filter
+  """
+  ✨ Generated from Field `Project`.`technologiesUsed` of type `[String]`
+  """
+  technologiesUsed: String_ListFilter
+  """
+  ✨ Generated from Field `Project`.`thumbnailUrl` of type `String`
+  """
+  thumbnailUrl: String_Filter
+  """
+  ✨ Generated from Field `Project`.`title` of type `String!`
+  """
+  title: String_Filter
+  """
+  ✨ Generated from Field `Project`.`testimonials_on_project` of type `[Testimonial!]!`
+  """
+  testimonials_on_project: Testimonial_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Project'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Project_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Project_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Project_Filter
+}
+"""
+✨ Generated having input type for table 'Project'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Project_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Project_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Project_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Project_Having!]
+  """
+  ✨ Generated from Field `Project`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Project`.`clientName_count` of type `Int!`
+  """
+  clientName_count: Int_Filter
+  """
+  ✨ Generated from Field `Project`.`companyInfoId_count` of type `Int!`
+  """
+  companyInfoId_count: Int_Filter
+  """
+  ✨ Generated from Field `Project`.`completionDate_count` of type `Int!`
+  """
+  completionDate_count: Int_Filter
+  """
+  ✨ Generated from Field `Project`.`description_count` of type `Int!`
+  """
+  description_count: Int_Filter
+  """
+  ✨ Generated from Field `Project`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Project`.`projectUrl_count` of type `Int!`
+  """
+  projectUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `Project`.`thumbnailUrl_count` of type `Int!`
+  """
+  thumbnailUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `Project`.`title_count` of type `Int!`
+  """
+  title_count: Int_Filter
+  """
+  ✨ Generated from Field `Project`.`completionDate_min` of type `Date`
+  """
+  completionDate_min: Date_Filter
+  """
+  ✨ Generated from Field `Project`.`completionDate_max` of type `Date`
+  """
+  completionDate_max: Date_Filter
+}
+"""
+✨ Generated key input type for table 'Project'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Project_Key {
+  """
+  ✨ Generated from Field `Project`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Project`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Project'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Project_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Project_Filter
+}
+"""
+✨ Generated order input type for table 'Project'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Project_Order {
+  """
+  ✨ Generated from Field `Project`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`companyInfoId` of type `UUID`
+  """
+  companyInfoId: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`companyInfo` of type `CompanyInfo`
+  """
+  companyInfo: CompanyInfo_Order
+  """
+  ✨ Generated from Field `Project`.`clientName` of type `String`
+  """
+  clientName: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`completionDate` of type `Date!`
+  """
+  completionDate: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`description` of type `String!`
+  """
+  description: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`projectUrl` of type `String`
+  """
+  projectUrl: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`thumbnailUrl` of type `String`
+  """
+  thumbnailUrl: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`title` of type `String!`
+  """
+  title: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`clientName_count` of type `Int!`
+  """
+  clientName_count: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`companyInfoId_count` of type `Int!`
+  """
+  companyInfoId_count: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`completionDate_count` of type `Int!`
+  """
+  completionDate_count: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`description_count` of type `Int!`
+  """
+  description_count: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`projectUrl_count` of type `Int!`
+  """
+  projectUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`thumbnailUrl_count` of type `Int!`
+  """
+  thumbnailUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`title_count` of type `Int!`
+  """
+  title_count: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`completionDate_min` of type `Date`
+  """
+  completionDate_min: OrderDirection
+  """
+  ✨ Generated from Field `Project`.`completionDate_max` of type `Date`
+  """
+  completionDate_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Service'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Service_Data {
+  """
+  ✨ Generated from Field `Service`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Service`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Service`.`description` of type `String!`
+  """
+  description: String
+  """
+  ✨ `_expr` server value variant of `description` (✨ Generated from Field `Service`.`description` of type `String!`)
+  """
+  description_expr: String_Expr
+  """
+  ✨ Generated from Field `Service`.`imageUrl` of type `String`
+  """
+  imageUrl: String
+  """
+  ✨ `_expr` server value variant of `imageUrl` (✨ Generated from Field `Service`.`imageUrl` of type `String`)
+  """
+  imageUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `Service`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `Service`.`name` of type `String!`)
+  """
+  name_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Service'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Service_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Service_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Service_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Service_Filter!]
+  """
+  ✨ Generated from Field `Service`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Service`.`description` of type `String!`
+  """
+  description: String_Filter
+  """
+  ✨ Generated from Field `Service`.`imageUrl` of type `String`
+  """
+  imageUrl: String_Filter
+  """
+  ✨ Generated from Field `Service`.`name` of type `String!`
+  """
+  name: String_Filter
+}
+"""
+✨ Generated first-row input type for table 'Service'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Service_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Service_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Service_Filter
+}
+"""
+✨ Generated having input type for table 'Service'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Service_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Service_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Service_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Service_Having!]
+  """
+  ✨ Generated from Field `Service`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Service`.`description_count` of type `Int!`
+  """
+  description_count: Int_Filter
+  """
+  ✨ Generated from Field `Service`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Service`.`imageUrl_count` of type `Int!`
+  """
+  imageUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `Service`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Service'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Service_Key {
+  """
+  ✨ Generated from Field `Service`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Service`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Service'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Service_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Service_Filter
+}
+"""
+✨ Generated order input type for table 'Service'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Service_Order {
+  """
+  ✨ Generated from Field `Service`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Service`.`description` of type `String!`
+  """
+  description: OrderDirection
+  """
+  ✨ Generated from Field `Service`.`imageUrl` of type `String`
+  """
+  imageUrl: OrderDirection
+  """
+  ✨ Generated from Field `Service`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `Service`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Service`.`description_count` of type `Int!`
+  """
+  description_count: OrderDirection
+  """
+  ✨ Generated from Field `Service`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Service`.`imageUrl_count` of type `Int!`
+  """
+  imageUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `Service`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'TeamMember'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input TeamMember_Data {
+  """
+  ✨ Generated from Field `TeamMember`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `TeamMember`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `TeamMember`.`companyInfoId` of type `UUID`
+  """
+  companyInfoId: UUID
+  """
+  ✨ `_expr` server value variant of `companyInfoId` (✨ Generated from Field `TeamMember`.`companyInfoId` of type `UUID`)
+  """
+  companyInfoId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `TeamMember`.`companyInfo` of type `CompanyInfo`
+  """
+  companyInfo: CompanyInfo_Key
+  """
+  ✨ Generated from Field `TeamMember`.`bio` of type `String`
+  """
+  bio: String
+  """
+  ✨ `_expr` server value variant of `bio` (✨ Generated from Field `TeamMember`.`bio` of type `String`)
+  """
+  bio_expr: String_Expr
+  """
+  ✨ Generated from Field `TeamMember`.`linkedinProfileUrl` of type `String`
+  """
+  linkedinProfileUrl: String
+  """
+  ✨ `_expr` server value variant of `linkedinProfileUrl` (✨ Generated from Field `TeamMember`.`linkedinProfileUrl` of type `String`)
+  """
+  linkedinProfileUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `TeamMember`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `TeamMember`.`name` of type `String!`)
+  """
+  name_expr: String_Expr
+  """
+  ✨ Generated from Field `TeamMember`.`photoUrl` of type `String`
+  """
+  photoUrl: String
+  """
+  ✨ `_expr` server value variant of `photoUrl` (✨ Generated from Field `TeamMember`.`photoUrl` of type `String`)
+  """
+  photoUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `TeamMember`.`role` of type `String!`
+  """
+  role: String
+  """
+  ✨ `_expr` server value variant of `role` (✨ Generated from Field `TeamMember`.`role` of type `String!`)
+  """
+  role_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'TeamMember'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input TeamMember_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [TeamMember_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: TeamMember_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [TeamMember_Filter!]
+  """
+  ✨ Generated from Field `TeamMember`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`companyInfoId` of type `UUID`
+  """
+  companyInfoId: UUID_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`companyInfo` of type `CompanyInfo`
+  """
+  companyInfo: CompanyInfo_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`bio` of type `String`
+  """
+  bio: String_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`linkedinProfileUrl` of type `String`
+  """
+  linkedinProfileUrl: String_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`photoUrl` of type `String`
+  """
+  photoUrl: String_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`role` of type `String!`
+  """
+  role: String_Filter
+}
+"""
+✨ Generated first-row input type for table 'TeamMember'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input TeamMember_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [TeamMember_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: TeamMember_Filter
+}
+"""
+✨ Generated having input type for table 'TeamMember'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input TeamMember_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [TeamMember_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: TeamMember_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [TeamMember_Having!]
+  """
+  ✨ Generated from Field `TeamMember`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`bio_count` of type `Int!`
+  """
+  bio_count: Int_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`companyInfoId_count` of type `Int!`
+  """
+  companyInfoId_count: Int_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`linkedinProfileUrl_count` of type `Int!`
+  """
+  linkedinProfileUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`photoUrl_count` of type `Int!`
+  """
+  photoUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `TeamMember`.`role_count` of type `Int!`
+  """
+  role_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'TeamMember'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input TeamMember_Key {
+  """
+  ✨ Generated from Field `TeamMember`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `TeamMember`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'TeamMember'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input TeamMember_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: TeamMember_Filter
+}
+"""
+✨ Generated order input type for table 'TeamMember'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input TeamMember_Order {
+  """
+  ✨ Generated from Field `TeamMember`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`companyInfoId` of type `UUID`
+  """
+  companyInfoId: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`companyInfo` of type `CompanyInfo`
+  """
+  companyInfo: CompanyInfo_Order
+  """
+  ✨ Generated from Field `TeamMember`.`bio` of type `String`
+  """
+  bio: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`linkedinProfileUrl` of type `String`
+  """
+  linkedinProfileUrl: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`photoUrl` of type `String`
+  """
+  photoUrl: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`role` of type `String!`
+  """
+  role: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`bio_count` of type `Int!`
+  """
+  bio_count: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`companyInfoId_count` of type `Int!`
+  """
+  companyInfoId_count: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`linkedinProfileUrl_count` of type `Int!`
+  """
+  linkedinProfileUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`photoUrl_count` of type `Int!`
+  """
+  photoUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `TeamMember`.`role_count` of type `Int!`
+  """
+  role_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Testimonial'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Testimonial_Data {
+  """
+  ✨ Generated from Field `Testimonial`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Testimonial`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Testimonial`.`projectId` of type `UUID`
+  """
+  projectId: UUID
+  """
+  ✨ `_expr` server value variant of `projectId` (✨ Generated from Field `Testimonial`.`projectId` of type `UUID`)
+  """
+  projectId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Testimonial`.`project` of type `Project`
+  """
+  project: Project_Key
+  """
+  ✨ Generated from Field `Testimonial`.`clientCompany` of type `String`
+  """
+  clientCompany: String
+  """
+  ✨ `_expr` server value variant of `clientCompany` (✨ Generated from Field `Testimonial`.`clientCompany` of type `String`)
+  """
+  clientCompany_expr: String_Expr
+  """
+  ✨ Generated from Field `Testimonial`.`clientName` of type `String!`
+  """
+  clientName: String
+  """
+  ✨ `_expr` server value variant of `clientName` (✨ Generated from Field `Testimonial`.`clientName` of type `String!`)
+  """
+  clientName_expr: String_Expr
+  """
+  ✨ Generated from Field `Testimonial`.`clientTitle` of type `String`
+  """
+  clientTitle: String
+  """
+  ✨ `_expr` server value variant of `clientTitle` (✨ Generated from Field `Testimonial`.`clientTitle` of type `String`)
+  """
+  clientTitle_expr: String_Expr
+  """
+  ✨ Generated from Field `Testimonial`.`date` of type `Date!`
+  """
+  date: Date
+  """
+  ✨ `_date` server value variant of `date` (✨ Generated from Field `Testimonial`.`date` of type `Date!`)
+  """
+  date_date: Date_Relative
+  """
+  ✨ `_expr` server value variant of `date` (✨ Generated from Field `Testimonial`.`date` of type `Date!`)
+  """
+  date_expr: Date_Expr
+  """
+  ✨ `_update` server value variant of `date` (✨ Generated from Field `Testimonial`.`date` of type `Date!`)
+  """
+  date_update: [Date_Update!]
+  """
+  ✨ Generated from Field `Testimonial`.`quote` of type `String!`
+  """
+  quote: String
+  """
+  ✨ `_expr` server value variant of `quote` (✨ Generated from Field `Testimonial`.`quote` of type `String!`)
+  """
+  quote_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Testimonial'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Testimonial_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Testimonial_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Testimonial_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Testimonial_Filter!]
+  """
+  ✨ Generated from Field `Testimonial`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`projectId` of type `UUID`
+  """
+  projectId: UUID_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`project` of type `Project`
+  """
+  project: Project_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`clientCompany` of type `String`
+  """
+  clientCompany: String_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`clientName` of type `String!`
+  """
+  clientName: String_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`clientTitle` of type `String`
+  """
+  clientTitle: String_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`date` of type `Date!`
+  """
+  date: Date_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`quote` of type `String!`
+  """
+  quote: String_Filter
+}
+"""
+✨ Generated first-row input type for table 'Testimonial'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Testimonial_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Testimonial_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Testimonial_Filter
+}
+"""
+✨ Generated having input type for table 'Testimonial'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Testimonial_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Testimonial_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Testimonial_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Testimonial_Having!]
+  """
+  ✨ Generated from Field `Testimonial`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`clientCompany_count` of type `Int!`
+  """
+  clientCompany_count: Int_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`clientName_count` of type `Int!`
+  """
+  clientName_count: Int_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`clientTitle_count` of type `Int!`
+  """
+  clientTitle_count: Int_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`date_count` of type `Int!`
+  """
+  date_count: Int_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`projectId_count` of type `Int!`
+  """
+  projectId_count: Int_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`quote_count` of type `Int!`
+  """
+  quote_count: Int_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`date_min` of type `Date`
+  """
+  date_min: Date_Filter
+  """
+  ✨ Generated from Field `Testimonial`.`date_max` of type `Date`
+  """
+  date_max: Date_Filter
+}
+"""
+✨ Generated key input type for table 'Testimonial'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Testimonial_Key {
+  """
+  ✨ Generated from Field `Testimonial`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Testimonial`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Testimonial'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Testimonial_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Testimonial_Filter
+}
+"""
+✨ Generated order input type for table 'Testimonial'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Testimonial_Order {
+  """
+  ✨ Generated from Field `Testimonial`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`projectId` of type `UUID`
+  """
+  projectId: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`project` of type `Project`
+  """
+  project: Project_Order
+  """
+  ✨ Generated from Field `Testimonial`.`clientCompany` of type `String`
+  """
+  clientCompany: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`clientName` of type `String!`
+  """
+  clientName: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`clientTitle` of type `String`
+  """
+  clientTitle: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`date` of type `Date!`
+  """
+  date: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`quote` of type `String!`
+  """
+  quote: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`clientCompany_count` of type `Int!`
+  """
+  clientCompany_count: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`clientName_count` of type `Int!`
+  """
+  clientName_count: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`clientTitle_count` of type `Int!`
+  """
+  clientTitle_count: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`date_count` of type `Int!`
+  """
+  date_count: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`projectId_count` of type `Int!`
+  """
+  projectId_count: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`quote_count` of type `Int!`
+  """
+  quote_count: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`date_min` of type `Date`
+  """
+  date_min: OrderDirection
+  """
+  ✨ Generated from Field `Testimonial`.`date_max` of type `Date`
+  """
+  date_max: OrderDirection
+}

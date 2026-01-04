@@ -1,0 +1,503 @@
+extend type CompanyInfo {
+  """
+  ✨ List `Project` objects in a one-to-many relationship (where `Project`.`companyInfo` is this object).
+  """
+  projects_on_companyInfo(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Project_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Project_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Project_Having
+  ): [Project!]! @fdc_generated(from: "Project.companyInfo", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `TeamMember` objects in a one-to-many relationship (where `TeamMember`.`companyInfo` is this object).
+  """
+  teamMembers_on_companyInfo(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeamMember_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeamMember_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeamMember_Having
+  ): [TeamMember!]! @fdc_generated(from: "TeamMember.companyInfo", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "CompanyInfo", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table.
+  """
+  _count: Int! @fdc_generated(from: "CompanyInfo.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table where the `address` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  address_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo.address", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table where the `contactEmail` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  contactEmail_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo.contactEmail", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table where the `missionStatement` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  missionStatement_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo.missionStatement", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table where the `motto` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  motto_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo.motto", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table where the `phoneNumber` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  phoneNumber_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo.phoneNumber", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `CompanyInfo` table where the `websiteUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  websiteUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo.websiteUrl", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "CompanyInfo.id", purpose: GLOBAL_ID)
+}
+extend type Project {
+  """
+  ✨ List `Testimonial` objects in a one-to-many relationship (where `Testimonial`.`project` is this object).
+  """
+  testimonials_on_project(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Testimonial_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Testimonial_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Testimonial_Having
+  ): [Testimonial!]! @fdc_generated(from: "Testimonial.project", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Project", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Project` table.
+  """
+  _count: Int! @fdc_generated(from: "Project.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `clientName` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  clientName_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.clientName", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `companyInfoId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  companyInfoId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.companyInfoId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `completionDate` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  completionDate_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.completionDate", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `projectUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  projectUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.projectUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `thumbnailUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  thumbnailUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.thumbnailUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `title` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  title_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.title", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `completionDate` field in the `Project` table.
+  """
+  completionDate_min: Date @fdc_generated(from: "Project.completionDate", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `completionDate` field in the `Project` table.
+  """
+  completionDate_max: Date @fdc_generated(from: "Project.completionDate", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Project.id", purpose: GLOBAL_ID)
+}
+extend type Service {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Service", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Service` table.
+  """
+  _count: Int! @fdc_generated(from: "Service.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Service` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Service.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Service` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Service.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Service` table where the `imageUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  imageUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Service.imageUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Service` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Service.name", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Service.id", purpose: GLOBAL_ID)
+}
+extend type TeamMember {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "TeamMember", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `TeamMember` table.
+  """
+  _count: Int! @fdc_generated(from: "TeamMember.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeamMember` table where the `bio` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  bio_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeamMember.bio", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeamMember` table where the `companyInfoId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  companyInfoId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeamMember.companyInfoId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeamMember` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeamMember.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeamMember` table where the `linkedinProfileUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  linkedinProfileUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeamMember.linkedinProfileUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeamMember` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeamMember.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeamMember` table where the `photoUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  photoUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeamMember.photoUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeamMember` table where the `role` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  role_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeamMember.role", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "TeamMember.id", purpose: GLOBAL_ID)
+}
+extend type Testimonial {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Testimonial", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Testimonial` table.
+  """
+  _count: Int! @fdc_generated(from: "Testimonial.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Testimonial` table where the `clientCompany` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  clientCompany_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Testimonial.clientCompany", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Testimonial` table where the `clientName` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  clientName_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Testimonial.clientName", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Testimonial` table where the `clientTitle` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  clientTitle_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Testimonial.clientTitle", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Testimonial` table where the `date` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  date_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Testimonial.date", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Testimonial` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Testimonial.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Testimonial` table where the `projectId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  projectId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Testimonial.projectId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Testimonial` table where the `quote` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  quote_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Testimonial.quote", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `date` field in the `Testimonial` table.
+  """
+  date_min: Date @fdc_generated(from: "Testimonial.date", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `date` field in the `Testimonial` table.
+  """
+  date_max: Date @fdc_generated(from: "Testimonial.date", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Testimonial.id", purpose: GLOBAL_ID)
+}

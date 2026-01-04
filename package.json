@@ -1,5 +1,5 @@
 {
-  "name": "stridegear-reactweb",
+  "name": "codecraft-software-house",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "firebase": "^12.6.0",
+    "@dataconnect/generated": "file:src/dataconnect-generated",
+    "@tanstack-query-firebase/react": "^2.1.1",
+    "@tanstack/react-query": "^5.90.12",
+    "firebase": "^12.7.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.10.1"

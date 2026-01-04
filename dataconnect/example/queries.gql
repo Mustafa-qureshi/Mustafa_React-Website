@@ -1,0 +1,28 @@
+mutation CreateCompanyInfo @auth(level: USER) {
+  companyInfo_insert(data: {
+    name: "New Company",
+    description: "A great new company",
+    contactEmail: "contact@example.com",
+    motto: "Innovate!"
+  })
+}
+
+query ListProjects @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
+  projects {
+    id
+    title
+    description
+  }
+}
+
+mutation UpdateTeamMember($id: UUID!, $bio: String) @auth(level: USER) {
+  teamMember_update(key: {id: $id}, data: {bio: $bio})
+}
+
+query GetTestimonial($id: UUID!) @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
+  testimonial(id: $id) {
+    clientName
+    quote
+    date
+  }
+}

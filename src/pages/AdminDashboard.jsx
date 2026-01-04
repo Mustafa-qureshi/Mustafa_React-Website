@@ -1,11 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import { useAuth } from '../context/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function AdminDashboard() {
-    const { userData } = useAuth();
+    const { userData, signOut, deleteAccount } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const handleSignOut = async () => {
+        console.log('AdminDashboard: handleSignOut called');
+        alert('Sign out clicked'); // Temporary alert
+        try {
+            await signOut();
+            console.log('AdminDashboard: signOut successful, navigating to /');
+            navigate('/');
+        } catch (err) {
+            console.error('AdminDashboard: signOut error', err);
+            setError(err.message || "Error signing out.");
+        }
+    };
+
+    const handleDeleteAccount = async () => {
+        if (window.confirm("Are you sure you want to delete your account? This action is irreversible.")) {
+            setLoading(true);
+            try {
+                await deleteAccount();
+                navigate('/');
+            } catch (err) {
+                setError(err.message || "Error deleting account. Please try again.");
+            } finally {
+                setLoading(false);
+            }
+        }
+    };
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50/50">
@@ -21,9 +51,6 @@ export default function AdminDashboard() {
                             <h1 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">Admin Dashboard</h1>
                             <p className="text-gray-500 font-medium mt-2">Welcome back, <span className="text-purple-600">{userData?.fullname}</span></p>
                         </div>
-                        <Link to="/form" className="btn-primary px-8 py-4 text-lg font-black uppercase tracking-wider shadow-lg hover:shadow-purple-200 transition-all">
-                            Manage All Records
-                        </Link>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -41,20 +68,38 @@ export default function AdminDashboard() {
                         </div>
                     </div>
 
+                    {error && <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">{error}</div>}
+
+                    <div className="flex gap-4 mb-8">
+                        <button
+                            onClick={handleSignOut}
+                            className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+                        >
+                            Sign Out
+                        </button>
+                        <button
+                            onClick={handleDeleteAccount}
+                            disabled={loading}
+                            className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors disabled:opacity-50"
+                        >
+                            {loading ? 'Deleting...' : 'Delete Account'}
+                        </button>
+                    </div>
+
                     <div className="bg-gray-50/50 rounded-[2rem] p-10 border border-gray-100">
                         <h2 className="text-2xl font-black text-gray-900 mb-6 tracking-tight">System Control Panel</h2>
                         <div className="grid sm:grid-cols-2 gap-4">
-                            <Link to="/form" className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-gray-100 hover:shadow-sm transition-all group">
-                                <div className="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">📋</div>
-                                <div>
-                                    <h4 className="font-bold text-gray-900">Manage Records</h4>
-                                    <p className="text-xs text-gray-500 font-medium">Review all user submissions</p>
-                                </div>
-                            </Link>
                             <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/50 border border-gray-100 opacity-60 cursor-not-allowed">
                                 <div className="w-12 h-12 rounded-xl bg-gray-100 text-gray-400 flex items-center justify-center text-xl">👤</div>
                                 <div>
                                     <h4 className="font-bold text-gray-900">User Management</h4>
+                                    <p className="text-xs text-gray-500 font-medium">Coming Soon</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/50 border border-gray-100 opacity-60 cursor-not-allowed">
+                                <div className="w-12 h-12 rounded-xl bg-gray-100 text-gray-400 flex items-center justify-center text-xl">📊</div>
+                                <div>
+                                    <h4 className="font-bold text-gray-900">Analytics</h4>
                                     <p className="text-xs text-gray-500 font-medium">Coming Soon</p>
                                 </div>
                             </div>

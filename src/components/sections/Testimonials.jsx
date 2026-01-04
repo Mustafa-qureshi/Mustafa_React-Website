@@ -3,19 +3,19 @@ import React from 'react';
 export default function Testimonials() {
     const testimonials = [
         {
-            quote: "The fit is perfect and the midsole gives me the energy I need for my daily runs. Best purchase this year!",
-            author: "Sam R.",
-            role: "Marathon Runner"
+            quote: "The team delivered our e-commerce platform on time and exceeded our expectations. The user experience is phenomenal!",
+            author: "Sarah L.",
+            role: "CEO, TechStart Inc."
         },
         {
-            quote: "Stylish enough for the city and comfortable enough for all-day wear. I get compliments everywhere!",
-            author: "Lina M.",
-            role: "Fashion Blogger"
+            quote: "Outstanding mobile app development. They understood our vision perfectly and brought it to life with cutting-edge technology.",
+            author: "Mike Chen",
+            role: "Product Manager, InnovateLabs"
         },
         {
-            quote: "Great customer service and fast delivery. The quality exceeded my expectations!",
-            author: "Omar K.",
-            role: "Fitness Coach"
+            quote: "Reliable, professional, and highly skilled. Their cloud solutions have transformed our business operations completely.",
+            author: "Emma Rodriguez",
+            role: "CTO, DataFlow Corp"
         }
     ];
 
@@ -26,18 +26,18 @@ export default function Testimonials() {
     );
 
     return (
-        <section className="section-padding bg-gradient-to-br from-purple-50 via-white to-blue-50 relative overflow-hidden">
+        <section className="section-padding bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
             <div className="blob -top-24 -right-24 opacity-20"></div>
             <div className="max-w-screen-xl mx-auto px-4 relative">
                 <div className="text-center mb-16">
-                    <span className="badge-gradient mb-4">Reviews</span>
-                    <h2 className="text-5xl font-black text-gray-900 mb-6">What Our <span className="gradient-text">Stride Club</span> Says</h2>
+                    <span className="badge-gradient mb-4">Client Reviews</span>
+                    <h2 className="text-5xl font-black text-gray-900 mb-6">What Our <span className="gradient-text">Clients</span> Say</h2>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-10">
                     {testimonials.map((t, i) => (
                         <blockquote key={i} className="card !p-10 border-white relative group shadow-soft-xl rounded-[2.5rem]">
-                            <div className="absolute top-6 right-8 text-6xl text-purple-100 font-serif opacity-50">"</div>
+                            <div className="absolute top-6 right-8 text-6xl text-blue-100 font-serif opacity-50">"</div>
                             <div className="flex items-center mb-6">
                                 <div className="flex gap-1">
                                     {[...Array(5)].map((_, index) => <StarIcon key={index} />)}
@@ -45,12 +45,12 @@ export default function Testimonials() {
                             </div>
                             <p className="text-xl font-medium text-gray-700 mb-8 leading-relaxed">"{t.quote}"</p>
                             <div className="pt-6 border-t border-gray-100 flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center font-bold text-purple-600">
+                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center font-bold text-blue-600">
                                     {t.author.charAt(0)}
                                 </div>
                                 <div>
                                     <p className="font-black text-gray-900 leading-none mb-1 text-lg">{t.author}</p>
-                                    <p className="text-sm font-bold text-purple-600 uppercase tracking-widest">{t.role}</p>
+                                    <p className="text-sm font-bold text-blue-600 uppercase tracking-widest">{t.role}</p>
                                 </div>
                             </div>
                         </blockquote>

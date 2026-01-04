@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { auth } from '../../firebase/config';
-import { signOut } from 'firebase/auth';
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const { currentUser, userData, isAdmin } = useAuth();
+    const { currentUser, userData, isAdmin, signOut } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -20,16 +18,19 @@ export default function Navbar() {
     }, []);
 
     const handleSignOut = async () => {
+        console.log('Navbar: handleSignOut called');
+        alert('Sign out from navbar clicked'); // Temporary
         try {
-            await signOut(auth);
+            await signOut();
+            console.log('Navbar: signOut successful, navigating to /');
             navigate('/');
-        } catch (error) {
-            console.error("Error signing out: ", error);
+        } catch (err) {
+            console.error('Navbar sign out error:', err);
         }
     };
 
     const isActive = (path) => {
-        return location.pathname === path ? 'text-purple-600 font-bold' : 'text-gray-700 hover:text-purple-600';
+        return location.pathname === path ? 'text-blue-600 font-bold' : 'text-gray-700 hover:text-blue-600';
     };
 
     return (
@@ -37,11 +38,11 @@ export default function Navbar() {
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-2 group">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center text-white font-bold text-xl group-hover:rotate-12 transition-transform">
-                        SG
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl group-hover:rotate-12 transition-transform">
+                        CC
                     </div>
-                    <span className="self-center text-2xl font-bold whitespace-nowrap text-gray-900 group-hover:text-purple-600 transition-colors">
-                        StrideGear
+                    <span className="self-center text-2xl font-bold whitespace-nowrap text-gray-900 group-hover:text-blue-600 transition-colors">
+                        CodeCraft
                     </span>
                 </Link>
 
@@ -57,9 +58,11 @@ export default function Navbar() {
                         <li>
                             <Link to="/contact" className={`block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 transition-colors ${isActive('/contact')}`}>Contact</Link>
                         </li>
-                        <li>
-                            <Link to="/form" className={`block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 transition-colors ${isActive('/form')}`}>Form</Link>
-                        </li>
+                        {currentUser && (
+                            <li>
+                                <Link to="/projects" className={`block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 transition-colors ${isActive('/projects')}`}>Projects</Link>
+                            </li>
+                        )}
                         {isAdmin && (
                             <li>
                                 <Link to="/admin" className={`block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 transition-colors ${isActive('/admin')}`}>Admin</Link>
@@ -105,7 +108,7 @@ export default function Navbar() {
                         <li><Link to="/" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
                         <li><Link to="/about" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>About</Link></li>
                         <li><Link to="/contact" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link></li>
-                        <li><Link to="/form" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Form</Link></li>
+                        {currentUser && <li><Link to="/projects" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Projects</Link></li>}
                         {currentUser ? (
                             <>
                                 {isAdmin && <li><Link to="/admin" className="block py-2 pl-3 pr-4 rounded" onClick={() => setIsMobileMenuOpen(false)}>Admin</Link></li>}

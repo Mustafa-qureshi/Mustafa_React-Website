@@ -8,29 +8,29 @@ export default function Footer({ variant = 'full' }) {
                 <div className="max-w-screen-xl mx-auto p-4 md:py-8">
                     <div className="sm:flex sm:items-center sm:justify-between">
                         <Link to="/" className="flex items-center space-x-3 mb-4 sm:mb-0">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold shadow-lg">
-                                SG
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg">
+                                CC
                             </div>
-                            <span className="text-2xl font-bold gradient-text">StrideGear</span>
+                            <span className="text-2xl font-bold gradient-text">CodeCraft</span>
                         </Link>
                         <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
                             <li>
-                                <Link to="/about" className="mr-4 hover:underline md:mr-6 hover:text-purple-600">About</Link>
+                                <Link to="/about" className="mr-4 hover:underline md:mr-6 hover:text-blue-600">About</Link>
                             </li>
                             <li>
-                                <a href="#" className="mr-4 hover:underline md:mr-6 hover:text-purple-600">Privacy Policy</a>
+                                <a href="#" className="mr-4 hover:underline md:mr-6 hover:text-blue-600">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="#" className="mr-4 hover:underline md:mr-6 hover:text-purple-600">Licensing</a>
+                                <a href="#" className="mr-4 hover:underline md:mr-6 hover:text-blue-600">Licensing</a>
                             </li>
                             <li>
-                                <Link to="/contact" className="hover:underline hover:text-purple-600">Contact</Link>
+                                <Link to="/contact" className="hover:underline hover:text-blue-600">Contact</Link>
                             </li>
                         </ul>
                     </div>
                     <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
                     <span className="block text-sm text-gray-500 sm:text-center">
-                        © {new Date().getFullYear()} <Link to="/" className="hover:underline">StrideGear™</Link>. All Rights Reserved.
+                        © {new Date().getFullYear()} <Link to="/" className="hover:underline">CodeCraft™</Link>. All Rights Reserved.
                     </span>
                 </div>
             </footer>
@@ -43,12 +43,12 @@ export default function Footer({ variant = 'full' }) {
                 <div className="grid md:grid-cols-4 gap-8 mb-8">
                     <div>
                         <Link to="/" className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center font-bold">
-                                SG
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center font-bold">
+                                CC
                             </div>
-                            <span className="text-xl font-bold">StrideGear</span>
+                            <span className="text-xl font-bold">CodeCraft</span>
                         </Link>
-                        <p className="text-gray-400 text-sm">Premium sneakers built for performance and style. Step boldly into every adventure.</p>
+                        <p className="text-gray-400 text-sm">Professional software development solutions built for innovation and excellence. Code boldly into every challenge.</p>
                     </div>
 
                     <div>
@@ -64,10 +64,10 @@ export default function Footer({ variant = 'full' }) {
                     <div>
                         <h4 className="font-semibold mb-4">Support</h4>
                         <ul className="space-y-2 text-sm">
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Shipping Info</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Returns</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Support</a></li>
                             <li><a href="#" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Size Guide</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
                         </ul>
                     </div>
 
@@ -82,7 +82,7 @@ export default function Footer({ variant = 'full' }) {
                 </div>
 
                 <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} StrideGear. Step Boldly. All rights reserved.</p>
+                    <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} CodeCraft. Code Boldly. All rights reserved.</p>
                     <div className="flex gap-4 mt-4 md:mt-0">
                         <a href="#" className="text-gray-400 hover:text-white transition-colors">
                             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>

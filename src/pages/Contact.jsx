@@ -40,8 +40,8 @@ export default function Contact() {
                                 </div>
                                 <h4 className="text-xl font-bold mb-2">Email Us</h4>
                                 <p className="text-gray-600 mb-3">We typically respond within 24 hours</p>
-                                <a href="mailto:help@stridegear.com" className="text-purple-600 font-semibold hover:text-purple-800 transition-colors">
-                                    help@stridegear.com
+                                <a href="mailto:help@CodeCraft.com" className="text-purple-600 font-semibold hover:text-purple-800 transition-colors">
+                                    help@CodeCraft.com
                                 </a>
                             </div>
 
@@ -52,7 +52,7 @@ export default function Contact() {
                                 <h4 className="text-xl font-bold mb-2">Call Us</h4>
                                 <p className="text-gray-600 mb-3">Mon-Fri, 9am-6pm PKT</p>
                                 <a href="tel:+923001234567" className="text-purple-600 font-semibold hover:text-purple-800 transition-colors">
-                                    +92 300 1234567
+                                    +92 325 5380235
                                 </a>
                             </div>
 
@@ -63,8 +63,8 @@ export default function Contact() {
                                 <h4 className="text-xl font-bold mb-2">Visit Us</h4>
                                 <p className="text-gray-600 mb-3">Our headquarters</p>
                                 <p className="text-purple-600 font-semibold">
-                                    StrideGear HQ<br />
-                                    Karachi, Pakistan
+                                    CodeCraft HQ<br />
+                                    Lahore, Pakistan
                                 </p>
                             </div>
                         </div>
@@ -80,7 +80,7 @@ export default function Contact() {
                                 <p className="text-gray-600">Fill out the form below and we'll get back to you soon</p>
                             </div>
 
-                            <form action="https://formspree.io/f/xvgwyojo" method="POST" className="space-y-6">
+                            <form action="https://formspree.io/f/mwveqqyy" method="POST" className="space-y-6">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                                         <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@ export default function Contact() {
                                         id="name"
                                         name="name"
                                         className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:border-purple-500 focus:ring-4 focus:ring-purple-100 dark:focus:ring-purple-900 transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                                        placeholder="John Doe"
+                                        placeholder="Muhammad Mustafa"
                                         required
                                     />
                                 </div>
@@ -131,8 +131,7 @@ export default function Contact() {
                                         <option value="">Select a topic...</option>
                                         <option value="order">Order Inquiry</option>
                                         <option value="product">Product Question</option>
-                                        <option value="shipping">Shipping & Delivery</option>
-                                        <option value="return">Returns & Exchanges</option>
+                                       
                                         <option value="other">Other</option>
                                     </select>
                                 </div>
@@ -197,9 +196,9 @@ export default function Contact() {
                         <div className="space-y-4">
                             {[
                                 { question: "How do I track my order?", answer: "You'll receive a tracking number via email once your order ships. Click the link in the email or visit our tracking page and enter your order number to see real-time updates.", id: 1 },
-                                { question: "How do I return an item?", answer: "Returns are free within 30 days. Simply pack the item in its original packaging, print the return label from your account, and drop it off at any courier service. Refunds are processed within 5-7 business days.", id: 2 },
-                                { question: "What payment methods do you accept?", answer: "We accept all major credit cards (Visa, Mastercard, American Express), PayPal, Apple Pay, Google Pay, and bank transfers. All transactions are secure and encrypted.", id: 3 },
-                                { question: "Do you offer international shipping?", answer: "Yes! We ship to over 50 countries worldwide. International shipping costs and delivery times vary by location. Check our shipping page for detailed information about your country.", id: 4 }
+                                
+                                { question: "What payment methods do you accept?", answer: "We accept all major credit cards (Visa, Mastercard, American Express), PayPal, Apple Pay, Google Pay, and bank transfers. All transactions are secure and encrypted.", id: 2 },
+                               
                             ].map((item, index) => (
                                 <div key={item.id}>
                                     <h2>

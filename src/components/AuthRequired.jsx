@@ -30,7 +30,7 @@ export default function AuthRequired() {
                         Access <span className="gradient-text">Locked</span>
                     </h1>
                     <p className="text-xl text-gray-500 font-medium mb-12 max-w-sm mx-auto leading-relaxed">
-                        This section contains premium gear and exclusive collections. Please sign in to unlock your access.
+                        This section contains project management tools and development resources. Please sign in to unlock your access.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">

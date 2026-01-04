@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
-import { auth, db } from '../firebase/config';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { useAuth } from '../context/AuthContext';
 
 export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +16,7 @@ export default function SignUp() {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    const { signup } = useAuth();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id === 'signup-email' ? 'email' : e.target.id === 'signup-password' ? 'password' : 'fullname']: e.target.value });
@@ -29,26 +28,10 @@ export default function SignUp() {
         setLoading(true);
 
         try {
-            // 1. Create user in Firebase Auth
-            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-            const user = userCredential.user;
-
-            // Update user profile with fullname
-            await updateProfile(user, {
-                displayName: formData.fullname
-            });
-
-            // 2. Store user info in Firestore "users" collection
-            await setDoc(doc(db, "users", user.uid), {
-                fullname: formData.fullname,
-                email: formData.email,
-                role: "user", // Default role
-                createdAt: new Date()
-            });
-
+            await signup(formData.email, formData.password, formData.fullname);
             navigate(from, { replace: true });
         } catch (err) {
-            setError(err.message);
+            setError(err.message || 'Signup failed. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -74,15 +57,15 @@ export default function SignUp() {
                                 <span className="inline-block bg-white/20 backdrop-blur-md px-4 py-2 rounded-full text-xs font-black mb-6 uppercase tracking-widest">Join the Club</span>
                                 <h1 className="text-6xl font-black leading-tight mb-6">Create Your <br />Account</h1>
                                 <p className="text-xl text-purple-100 font-medium leading-relaxed">
-                                    Join thousands of satisfied customers and get access to exclusive drops and member-only rewards.
+                                    Join our community of innovators and get access to premium software solutions and expert support.
                                 </p>
                             </div>
 
                             <div className="space-y-8">
                                 {[
-                                    { text: "Early Access", icon: "🚀", desc: "First to shop new releases" },
-                                    { text: "Fast Returns", icon: "🛡️", desc: "Easy, free return policy" },
-                                    { text: "Exclusive Perks", icon: "✨", desc: "Members-only price cuts" }
+                                    { text: "Priority Support", icon: "🚀", desc: "24/7 dedicated technical assistance" },
+                                    { text: "Project Updates", icon: "🛡️", desc: "Real-time progress tracking and reports" },
+                                    { text: "Exclusive Access", icon: "✨", desc: "Early access to new features and tools" }
                                 ].map((item, idx) => (
                                     <div key={idx} className="flex gap-6 items-center group/item hover:translate-x-2 transition-transform">
                                         <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-3xl shadow-xl">
@@ -115,7 +98,7 @@ export default function SignUp() {
                                         type="text"
                                         id="fullname"
                                         className="w-full !rounded-2xl"
-                                        placeholder="Abdul Saboor"
+                                        placeholder="Muhammad Musta"
                                         required
                                         onChange={handleChange}
                                     />

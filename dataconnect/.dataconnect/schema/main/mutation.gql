@@ -1,0 +1,562 @@
+extend type Mutation {
+  """
+  ✨ Insert a single `CompanyInfo` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  companyInfo_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: CompanyInfo_Data!
+  ): CompanyInfo_KeyOutput! @fdc_generated(from: "CompanyInfo", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Project` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  project_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Project_Data!
+  ): Project_KeyOutput! @fdc_generated(from: "Project", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Service` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  service_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Service_Data!
+  ): Service_KeyOutput! @fdc_generated(from: "Service", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `TeamMember` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  teamMember_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: TeamMember_Data!
+  ): TeamMember_KeyOutput! @fdc_generated(from: "TeamMember", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Testimonial` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  testimonial_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Testimonial_Data!
+  ): Testimonial_KeyOutput! @fdc_generated(from: "Testimonial", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `CompanyInfo` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  companyInfo_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [CompanyInfo_Data!]!
+  ): [CompanyInfo_KeyOutput!]! @fdc_generated(from: "CompanyInfo", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Project` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  project_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Project_Data!]!
+  ): [Project_KeyOutput!]! @fdc_generated(from: "Project", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Service` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  service_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Service_Data!]!
+  ): [Service_KeyOutput!]! @fdc_generated(from: "Service", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `TeamMember` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  teamMember_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [TeamMember_Data!]!
+  ): [TeamMember_KeyOutput!]! @fdc_generated(from: "TeamMember", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Testimonial` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  testimonial_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Testimonial_Data!]!
+  ): [Testimonial_KeyOutput!]! @fdc_generated(from: "Testimonial", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert or update a single `CompanyInfo` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `CompanyInfo`.
+  """
+  companyInfo_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: CompanyInfo_Data!
+  ): CompanyInfo_KeyOutput! @fdc_generated(from: "CompanyInfo", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Project` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Project`.
+  """
+  project_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Project_Data!
+  ): Project_KeyOutput! @fdc_generated(from: "Project", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Service` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Service`.
+  """
+  service_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Service_Data!
+  ): Service_KeyOutput! @fdc_generated(from: "Service", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `TeamMember` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `TeamMember`.
+  """
+  teamMember_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: TeamMember_Data!
+  ): TeamMember_KeyOutput! @fdc_generated(from: "TeamMember", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Testimonial` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Testimonial`.
+  """
+  testimonial_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Testimonial_Data!
+  ): Testimonial_KeyOutput! @fdc_generated(from: "Testimonial", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update `CompanyInfo` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `CompanyInfo`.
+  """
+  companyInfo_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [CompanyInfo_Data!]!
+  ): [CompanyInfo_KeyOutput!]! @fdc_generated(from: "CompanyInfo", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Project` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Project`.
+  """
+  project_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Project_Data!]!
+  ): [Project_KeyOutput!]! @fdc_generated(from: "Project", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Service` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Service`.
+  """
+  service_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Service_Data!]!
+  ): [Service_KeyOutput!]! @fdc_generated(from: "Service", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `TeamMember` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `TeamMember`.
+  """
+  teamMember_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [TeamMember_Data!]!
+  ): [TeamMember_KeyOutput!]! @fdc_generated(from: "TeamMember", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Testimonial` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Testimonial`.
+  """
+  testimonial_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Testimonial_Data!]!
+  ): [Testimonial_KeyOutput!]! @fdc_generated(from: "Testimonial", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `CompanyInfo` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `CompanyInfo` or `null` if not found.
+  """
+  companyInfo_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: CompanyInfo_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: CompanyInfo_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: CompanyInfo_Data!
+  ): CompanyInfo_KeyOutput @fdc_generated(from: "CompanyInfo", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Project` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Project` or `null` if not found.
+  """
+  project_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Project_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Project_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Project_Data!
+  ): Project_KeyOutput @fdc_generated(from: "Project", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Service` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Service` or `null` if not found.
+  """
+  service_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Service_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Service_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Service_Data!
+  ): Service_KeyOutput @fdc_generated(from: "Service", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `TeamMember` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `TeamMember` or `null` if not found.
+  """
+  teamMember_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: TeamMember_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: TeamMember_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: TeamMember_Data!
+  ): TeamMember_KeyOutput @fdc_generated(from: "TeamMember", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Testimonial` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Testimonial` or `null` if not found.
+  """
+  testimonial_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Testimonial_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Testimonial_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Testimonial_Data!
+  ): Testimonial_KeyOutput @fdc_generated(from: "Testimonial", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update `CompanyInfo` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  companyInfo_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: CompanyInfo_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: CompanyInfo_Data!
+  ): Int! @fdc_generated(from: "CompanyInfo", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Project` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  project_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Project_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Project_Data!
+  ): Int! @fdc_generated(from: "Project", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Service` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  service_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Service_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Service_Data!
+  ): Int! @fdc_generated(from: "Service", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `TeamMember` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  teamMember_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: TeamMember_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: TeamMember_Data!
+  ): Int! @fdc_generated(from: "TeamMember", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Testimonial` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  testimonial_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Testimonial_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Testimonial_Data!
+  ): Int! @fdc_generated(from: "Testimonial", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Delete a single `CompanyInfo` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  companyInfo_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: CompanyInfo_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: CompanyInfo_FirstRow
+  ): CompanyInfo_KeyOutput @fdc_generated(from: "CompanyInfo", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Project` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  project_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Project_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Project_FirstRow
+  ): Project_KeyOutput @fdc_generated(from: "Project", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Service` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  service_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Service_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Service_FirstRow
+  ): Service_KeyOutput @fdc_generated(from: "Service", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `TeamMember` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  teamMember_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: TeamMember_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: TeamMember_FirstRow
+  ): TeamMember_KeyOutput @fdc_generated(from: "TeamMember", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Testimonial` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  testimonial_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Testimonial_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Testimonial_FirstRow
+  ): Testimonial_KeyOutput @fdc_generated(from: "Testimonial", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `CompanyInfo` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  companyInfo_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: CompanyInfo_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "CompanyInfo", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Project` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  project_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Project_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Project", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Service` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  service_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Service_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Service", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `TeamMember` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  teamMember_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: TeamMember_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "TeamMember", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Testimonial` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  testimonial_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Testimonial_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Testimonial", purpose: DELETE_MULTIPLE)
+}

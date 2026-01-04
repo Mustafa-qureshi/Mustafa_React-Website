@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
-import { auth, db, googleProvider } from '../firebase/config';
-import { signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { useAuth } from '../context/AuthContext';
 
 export default function SignIn() {
     const [showPassword, setShowPassword] = useState(false);
@@ -16,17 +14,45 @@ export default function SignIn() {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    const { login, googleSignIn, resetPassword, currentUser } = useAuth();
+
+    // Debug: alert when component mounts
+    useEffect(() => {
+        console.log('SignIn component mounted');
+    }, []);
+
+    useEffect(() => {
+        if (currentUser) {
+            console.log('User authenticated, redirecting to dashboard');
+            navigate('/dashboard', { replace: true });
+        }
+    }, [currentUser, navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
         setMessage('');
         setLoading(true);
+
+        // Client-side validation
+        if (!email.trim()) {
+            setError('Email is required');
+            setLoading(false);
+            return;
+        }
+        if (!password.trim()) {
+            setError('Password is required');
+            setLoading(false);
+            return;
+        }
+
         try {
-            await signInWithEmailAndPassword(auth, email, password);
-            navigate(from, { replace: true });
+            await login(email, password);
+            setMessage('Login successful!');
+            // Redirect will happen via useEffect when currentUser changes
         } catch (err) {
-            setError(err.message);
+            console.error('Login error:', err);
+            setError(err.message || 'Login failed. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -37,40 +63,27 @@ export default function SignIn() {
         setMessage('');
         setLoading(true);
         try {
-            const result = await signInWithPopup(auth, googleProvider);
-            const user = result.user;
-
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            if (!userDoc.exists()) {
-                await setDoc(doc(db, "users", user.uid), {
-                    fullname: user.displayName,
-                    email: user.email,
-                    role: "user",
-                    createdAt: new Date()
-                });
-            }
-            navigate(from, { replace: true });
+            await googleSignIn();
+            setMessage('Google sign-in successful!');
+            // Redirect will happen via useEffect when currentUser changes
         } catch (err) {
-            setError(err.message);
+            console.error('Google sign-in error:', err);
+            setError(err.message || 'Google sign-in failed. Please try again.');
         } finally {
             setLoading(false);
         }
     };
 
     const handleForgotPassword = async () => {
-        if (!email) {
-            setError('Please enter your email first.');
+        if (!email.trim()) {
+            setError('Please enter your email first');
             return;
         }
-        setLoading(true);
         try {
-            await sendPasswordResetEmail(auth, email);
-            setMessage('Password reset email sent! Check your inbox.');
-            setError('');
+            await resetPassword(email);
+            setMessage('Password reset email sent!');
         } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
+            setError(err.message || 'Failed to send reset email');
         }
     };
 
@@ -90,7 +103,7 @@ export default function SignIn() {
                         <div className="relative z-10">
                             <h2 className="text-5xl font-black mb-8 leading-tight">Welcome <br />Back!</h2>
                             <p className="text-xl text-purple-100 font-medium leading-relaxed mb-10">
-                                Ready to step up your game? Sign in to access your exclusive offers and saved styles.
+                                Ready to level up your development? Sign in to access your projects and development tools.
                             </p>
                             <div className="flex items-center gap-4">
                                 <div className="flex -space-x-3">
@@ -119,9 +132,8 @@ export default function SignIn() {
                                     <input
                                         type="email"
                                         id="email"
-                                        className="w-full !rounded-2xl"
+                                        className="w-full rounded-2xl"
                                         placeholder="name@company.com"
-                                        required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                     />
@@ -136,9 +148,8 @@ export default function SignIn() {
                                         <input
                                             type={showPassword ? "text" : "password"}
                                             id="password"
-                                            className="w-full !rounded-2xl pr-14"
+                                            className="w-full rounded-2xl pr-14"
                                             placeholder="••••••••"
-                                            required
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                         />
@@ -155,28 +166,32 @@ export default function SignIn() {
                                 <button type="submit" disabled={loading} className="w-full btn-primary py-4 disabled:opacity-50 text-lg font-black uppercase tracking-wider">
                                     {loading ? 'Logging in...' : 'Log In'}
                                 </button>
-
-                                <div className="relative flex items-center py-4">
-                                    <div className="flex-grow border-t border-gray-100"></div>
-                                    <span className="flex-shrink mx-4 text-xs font-black text-gray-300 uppercase tracking-widest">OR</span>
-                                    <div className="flex-grow border-t border-gray-100"></div>
-                                </div>
-
-                                <button
-                                    type="button"
-                                    onClick={handleGoogleSignIn}
-                                    disabled={loading}
-                                    className="w-full flex items-center justify-center gap-3 px-6 py-4 border-2 border-gray-100 rounded-2xl bg-white text-sm font-black text-gray-700 hover:bg-gray-50 transition-all disabled:opacity-50"
-                                >
-                                    <svg className="w-5 h-5" viewBox="0 0 48 48">
-                                        <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
-                                        <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z" />
-                                        <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.219 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" />
-                                        <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C39.712 34.464 42 30.028 42 24c0-1.341-.138-2.65-.389-3.917z" />
-                                    </svg>
-                                    Google Login
-                                </button>
                             </form>
+
+                            <div className="mt-6">
+                                <div className="relative">
+                                    <div className="absolute inset-0 flex items-center">
+                                        <div className="w-full border-t border-gray-300" />
+                                    </div>
+                                    <div className="relative flex justify-center text-sm">
+                                        <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                                    </div>
+                                </div>
+                                <div className="mt-6">
+                                    <button
+                                        onClick={handleGoogleSignIn}
+                                        className="w-full flex justify-center items-center px-4 py-3 border border-gray-300 rounded-2xl shadow-sm text-sm font-medium text-gray-500 bg-white hover:bg-gray-50"
+                                    >
+                                        <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                        </svg>
+                                        Sign in with Google
+                                    </button>
+                                </div>
+                            </div>
 
                             <div className="mt-10 text-center text-sm font-medium text-gray-500">
                                 New here? {' '}

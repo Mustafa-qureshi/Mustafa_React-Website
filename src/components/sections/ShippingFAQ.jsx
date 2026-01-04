@@ -9,23 +9,23 @@ export default function ShippingFAQ() {
 
     const faqs = [
         {
-            question: "How long does shipping take?",
-            answer: "Standard shipping takes 3–7 business days. Express options are available at checkout for faster delivery."
+            question: "How long does a typical project take?",
+            answer: "Project timelines vary based on complexity. A simple website might take 2-4 weeks, while complex applications can take 3-6 months. We'll provide a detailed timeline during consultation."
         },
         {
-            question: "What is your return policy?",
-            answer: "We offer free returns within 30 days of purchase. Items must be unworn and in original packaging."
+            question: "What technologies do you work with?",
+            answer: "We specialize in modern web technologies including React, Node.js, Python, and cloud platforms like AWS and Azure. We choose the best tools for each project."
         },
         {
-            question: "Do you ship internationally?",
-            answer: "Yes! We ship to over 50 countries worldwide. International shipping times vary by location."
+            question: "Do you provide ongoing support?",
+            answer: "Yes! We offer comprehensive maintenance and support packages to keep your applications running smoothly and up-to-date with the latest security standards."
         }
     ];
 
     return (
         <section className="section-padding bg-white">
             <div className="max-w-3xl mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">Shipping & Returns</h2>
+                <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
 
                 <div data-accordion="collapse">
                     {faqs.map((faq, index) => (

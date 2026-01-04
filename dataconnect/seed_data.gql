@@ -1,0 +1,76 @@
+mutation CreateSeedData @auth(level: NO_ACCESS) @transaction {
+  companyInfo_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      name: "Example Company 1",
+      description: "This is the first example company.",
+      motto: "Innovation is our tradition.",
+      contactEmail: "contact@example1.com"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440001",
+      name: "Example Company 2",
+      description: "This is the second example company.",
+      motto: "Quality and service are our top priorities.",
+      contactEmail: "info@example2.com"
+    }
+  ])
+  service_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440002",
+      name: "Software Development",
+      description: "We offer custom software development services.",
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440003",
+      name: "Web Design",
+      description: "We create modern and responsive web designs.",
+    }
+  ])
+  teamMember_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440004",
+      companyInfoId: "550e8400-e29b-41d4-a716-446655440000",
+      name: "John Doe",
+      role: "CEO"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440005",
+      companyInfoId: "550e8400-e29b-41d4-a716-446655440001",
+      name: "Jane Smith",
+      role: "CTO"
+    }
+  ])
+  project_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440006",
+      companyInfoId: "550e8400-e29b-41d4-a716-446655440000",
+      title: "New Website",
+      description: "Creating a brand new website",
+      completionDate: "2024-12-12"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440007",
+      companyInfoId: "550e8400-e29b-41d4-a716-446655440001",
+      title: "New App",
+      description: "Creating a mobile application",
+      completionDate: "2025-01-01"
+    }
+  ])
+  testimonial_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440008",
+      projectId: "550e8400-e29b-41d4-a716-446655440006",
+      clientName: "Bob User",
+      quote: "Great website!"
+      date: "2024-12-12"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440009",
+      projectId: "550e8400-e29b-41d4-a716-446655440007",
+      clientName: "Alice Example",
+      quote: "Amazing new app!",
+      date: "2025-01-01"
+    }
+  ])
+}

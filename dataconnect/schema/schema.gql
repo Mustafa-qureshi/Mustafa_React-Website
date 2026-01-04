@@ -1,0 +1,45 @@
+type CompanyInfo @table {
+  name: String!
+  motto: String!
+  description: String!
+  contactEmail: String!
+  websiteUrl: String
+  phoneNumber: String
+  address: String
+  missionStatement: String
+}
+
+type Service @table {
+  name: String!
+  description: String!
+  imageUrl: String
+}
+
+type Project @table {
+  title: String!
+  description: String!
+  completionDate: Date!
+  clientName: String
+  projectUrl: String
+  technologiesUsed: [String]
+  thumbnailUrl: String
+  companyInfo: CompanyInfo
+}
+
+type Testimonial @table {
+  clientName: String!
+  quote: String!
+  date: Date!
+  clientTitle: String
+  clientCompany: String
+  project: Project
+}
+
+type TeamMember @table {
+  name: String!
+  role: String!
+  bio: String
+  photoUrl: String
+  linkedinProfileUrl: String
+  companyInfo: CompanyInfo
+}

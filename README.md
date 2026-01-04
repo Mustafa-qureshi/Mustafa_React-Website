@@ -1,15 +1,15 @@
-# StrideGear — Premium Sneaker Management
+# CodeCraft — Professional Software Development Management
 
-StrideGear is a mockup/sample high-performance React web application designed for sneaker enthusiasts to manage their collections with a premium, modern aesthetic. It integrates secure authentication, real-time inventory tracking, and role-based access control.
+CodeCraft is a modern React web application designed for software development teams to manage their projects with a professional, clean aesthetic. It features local storage-based authentication and data persistence for standalone deployment without external dependencies.
 
 ---
 
 ## ✨ Key Functionalities
 
-- **Secure Authentication**: Multi-layered login system supporting standard Email/Password and one-tap Google OAuth.
-- **Dynamic Inventory CRUD**: Full Create, Read, Update, and Delete capabilities for sneaker records (Brand, Model, Category, Price, Size).
-- **Role-Based Dashboards**: Distinct interfaces and permissions for regular **Users** (personal collections) and **Admins** (global catalog management).
-- **Soft UI Design System**: A bespoke visual language featuring super-rounded corners, layered soft shadows, and premium gradients.
+- **Local Authentication**: Secure login system using localStorage for session management with Email/Password authentication.
+- **Dynamic Project CRUD**: Full Create, Read, Update, and Delete capabilities for software development projects (Title, Description, Technologies, Status, Client, Budget, Timeline).
+- **Role-Based Dashboards**: Distinct interfaces and permissions for regular **Users** (personal projects) and **Admins** (global project oversight).
+- **Modern UI Design System**: A professional visual language featuring clean layouts, subtle shadows, and technology-focused gradients.
 
 ---
 
@@ -22,16 +22,16 @@ To ensure a frictionless user experience, the application implements a context-a
 
 ### 2. Role-Based Access Control (RBAC)
 A robust security layer implemented via custom React components (`ProtectedRoute`, `AdminRoute`).
-- **Logic**: Intercepts routing requests and validates the user's authentication state and custom claims (Firestore-stored roles) before rendering sensitive components.
+- **Logic**: Intercepts routing requests and validates the user's authentication state and localStorage-stored roles before rendering sensitive components.
 - **Algorithm**: Uses a hierarchical check: `User Session` > `Loading State` > `Role Claim`.
 
-### 3. Real-time Synchronization & Fallback
-Leverages Firebase Firestore for low-latency data updates.
-- **Implementation**: Utilizes `onSnapshot` for real-time UI reflect.
-- **Resilience Algorithm**: Includes a fallback query logic that detects missing composite indexes and automatically switches to client-side sorting to maintain functionality during database optimization.
+### 3. Local Storage Data Persistence
+Utilizes browser localStorage for data persistence and synchronization.
+- **Implementation**: Custom utility functions (`utils/localStorage.js`) handle CRUD operations with JSON serialization.
+- **Features**: Automatic ID generation, timestamp tracking, user-specific data isolation, and error handling for storage operations.
 
 ### 4. Global Design Tokens
-The "Soft" aesthetic is maintained through a centralized CSS variable system (`index.css`), allowing for rapid global changes to corner radii and shadow depths.
+The modern aesthetic is maintained through a centralized CSS variable system (`index.css`), allowing for rapid global changes to spacing and shadow depths.
 
 ---
 
@@ -43,15 +43,12 @@ The "Soft" aesthetic is maintained through a centralized CSS variable system (`i
    npm install
    ```
 
-2. **Environment Setup**:
-   Configure `src/firebase/config.js` with your Firebase project credentials.
-
-3. **Development**:
+2. **Development**:
    ```bash
    npm run dev
    ```
 
-4. **Production Build**:
+3. **Production Build**:
    ```bash
    npm run build
    ```
@@ -60,9 +57,10 @@ The "Soft" aesthetic is maintained through a centralized CSS variable system (`i
 
 ## 🌐 Deployment
 
-The project is optimized for **Firebase Hosting**. 
-- Deploy using: `firebase deploy --only hosting`
-- Ensure authorized domains are configured in the Firebase Console for proper OAuth functionality.
+The project is optimized for deployment on any static hosting platform including **Vercel**, **Netlify**, **GitHub Pages**, or traditional web servers.
+- Build the project: `npm run build`
+- Deploy the `dist` folder to your hosting provider
+- No external dependencies or configuration required - the app runs completely standalone using browser localStorage.
 
 ---
-© 2025 StrideGear. Step Boldly.
+© 2025 CodeCraft. Code Boldly.

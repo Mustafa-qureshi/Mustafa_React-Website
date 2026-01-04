@@ -11,10 +11,13 @@ const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const SignIn = lazy(() => import('./pages/SignIn'));
 const SignUp = lazy(() => import('./pages/SignUp'));
-const FormPage = lazy(() => import('./pages/FormPage'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const UserDashboard = lazy(() => import('./pages/UserDashboard'));
+const CreateProject = lazy(() => import('./pages/CreateProject'));
+const Projects = lazy(() => import('./pages/Projects'));
+const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
+const EditProject = lazy(() => import('./pages/EditProject'));
 
 function App() {
   return (
@@ -28,9 +31,12 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
 
           {/* Protected Routes */}
-          <Route path="/form" element={<ProtectedRoute><FormPage /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
           <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          <Route path="/create-project" element={<ProtectedRoute><CreateProject /></ProtectedRoute>} />
+          <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>} />
+          <Route path="/project/:id" element={<ProtectedRoute><ProjectDetails /></ProtectedRoute>} />
+          <Route path="/edit-project/:id" element={<ProtectedRoute><EditProject /></ProtectedRoute>} />
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
